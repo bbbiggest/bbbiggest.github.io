@@ -67,8 +67,8 @@ feed:
 # or "master" otherwise
 safe: False
 lsi: False
-username: b
-repo: bb
+username: bbbiggest
+repo: bbig
 branch: main
 relative_source: ../
 destination: ../
