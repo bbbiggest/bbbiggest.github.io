@@ -72,7 +72,7 @@ repo: bbig
 branch: main
 relative_source: ../
 destination: ../
-production_url:  / #https://bbbiggest.github.io/
+production_url:  https://bbbiggest.github.io/
 source_url:  https://github.com/bbbiggest/bbbiggest.github.io/
 
 exclude:
