@@ -1,8 +1,18 @@
+bbbiggest:
+  username: bbbiggest(bbig)
+  name: bbbiggest
+  url_full: http://bbbiggest.github.io/
+  url: bbbiggest.github.io
+  bio: an ordinary student
+  picture: assets/images/1hh.png
+  facebook: False
+  twitter: False
+  cover: False
 ghost:
   username: ghost
   name: Ghost
-  url_full: http://jekyllt.github.io/jasper2/
-  url: jekyllt.github.io/jasper2
+  url_full: http://jekyller.github.io/jasper2/
+  url: jekyller.github.io/jasper2
   bio: The professional publishing platform
   picture: assets/images/ghost.png
   facebook: ghost

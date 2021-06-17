@@ -4,7 +4,7 @@
     "demo": "https://demo.ghost.io",
     "version": "2.1.9",
     "scripts": {
-        "gulp": "gulp"
+	"gulp": "gulp"
     },
     "engines": {
         "ghost": ">=1.2.0"
@@ -27,7 +27,7 @@
         ]
     },
     "keywords": [
-        "ghost",
+        "jasper2",
         "theme"
     ],
     "repository": {
