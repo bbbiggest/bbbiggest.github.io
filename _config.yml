@@ -28,7 +28,7 @@ facebook: none # replace by your username
 
 # Disqus
 disqus: True
-disqus_shortname: tllh # replace with your disqus username
+disqus_shortname: bbig # replace with your disqus username
 
 # Google Analytics
 google_analytics: G-890HCLZ8N9 # replace with your GA tracking identifier
