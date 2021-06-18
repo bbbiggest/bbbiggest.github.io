@@ -71,7 +71,7 @@ lsi: False
 username: bbbiggest
 repo: bbbiggest.github.io
 branch: main
-relative_source: ../bbbiggest.github.io/
+relative_source: ../
 destination: _site/
 production_url:  https://bbbiggest.github.io/
 source_url:  https://github.com/bbbiggest/bbbiggest.github.io/

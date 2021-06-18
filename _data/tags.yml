@@ -14,3 +14,7 @@ getting-started:
   name: getting-started
   description: False
   cover: False
+notes:
+  name: notes
+  description: Study notes 
+  cover: assets/images/bear.jpg
