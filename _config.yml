@@ -69,10 +69,10 @@ feed:
 safe: False
 lsi: False
 username: bbbiggest
-repo: bbig
+repo: bbbiggest.github.io
 branch: main
 relative_source: ../
-destination: ../
+destination: _site/
 production_url:  https://bbbiggest.github.io/
 source_url:  https://github.com/bbbiggest/bbbiggest.github.io/
 
