@@ -4,7 +4,7 @@ current: post
 cover: assets/images/writing.jpg
 navigation: True
 title: Fully homomorphic encryption 全同态加密
-date: 2021-06-19 21:05:00
+date: 2021-06-18 21:05:00
 tags: [notes]
 class: post-template
 subclass: 'post'
@@ -67,13 +67,17 @@ A single instruction multiple data，**单指令多数据**。
 #### 多项式环
 
 一个系数为整数的多项式
-$$
+<!-- $$
 R=\mathbb{Z}[X]/(X^n + 1): X^n\equiv-1
-$$
+$$ -->
 
-$$
+![2021-6-19-formula1](https://bbbiggest.github.io/assets/images/2021-6-19-formula1.png)
+
+<!-- $$
 R_Q=R/Q:系数模 Q 计算
-$$
+$$ -->
+
+![2021-6-19-formula2](https://bbbiggest.github.io/assets/images/2021-6-19-formula2.png)
 
 注意这里的 Q 是**零平衡**的，例如：Q = 5 时，系数的取值范围为 {-2, -1, 0, 1, 2} ，而不是 0~4
 
@@ -101,7 +105,9 @@ $$
 
 #### 解密和解码
 
-$$
+<!-- $$
 R_Q^2 \to R_t or R \to \mathbb{Z}^n_t or \mathbb{C}^{n/2}
-$$
+$$ -->
+
+![2021-6-19-formula3](https://bbbiggest.github.io/assets/images/2021-6-19-formula3.png)
 
