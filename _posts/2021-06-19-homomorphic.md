@@ -70,13 +70,10 @@ A single instruction multiple data，**单指令多数据**。
 <!-- $$
 R=\mathbb{Z}[X]/(X^n + 1): X^n\equiv-1
 $$ -->
-
 ![2021-6-19-formula1](https://bbbiggest.github.io/assets/images/2021-6-19-formula1.png)
-
 <!-- $$
 R_Q=R/Q:系数模 Q 计算
 $$ -->
-
 ![2021-6-19-formula2](https://bbbiggest.github.io/assets/images/2021-6-19-formula2.png)
 
 注意这里的 Q 是**零平衡**的，例如：Q = 5 时，系数的取值范围为 {-2, -1, 0, 1, 2} ，而不是 0~4
@@ -108,6 +105,5 @@ $$ -->
 <!-- $$
 R_Q^2 \to R_t or R \to \mathbb{Z}^n_t or \mathbb{C}^{n/2}
 $$ -->
-
 ![2021-6-19-formula3](https://bbbiggest.github.io/assets/images/2021-6-19-formula3.png)
 
