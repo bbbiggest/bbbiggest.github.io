@@ -4,7 +4,7 @@ current: post
 cover: assets/images/writing.jpg
 navigation: True
 title: Fully homomorphic encryption 全同态加密
-date: 2021-06-18 21:05:00
+date: 2021-06-19 21:05:00
 tags: [notes]
 class: post-template
 subclass: 'post'
@@ -13,7 +13,7 @@ author: bbig
 
 ### 同态加密
 
-同态加密是一种加密形式，它允许在不先解密的情况下对其加密数据执行计算，且计算结果任然保持加密。这非常的有用，比如说你想通过 DNA 找寻你的亲人，但你又想对自己的 DNA 数据保密，这时同态机密就起作用啦，你可以上传加密后的 DNA 数据到数据库，然后他们就可以为你提供匹配服务并将结果返还给你。而在这过程中，服务提供者对这些数据是完全不知情的。
+同态加密是一种加密形式，它允许在不先解密的情况下对其加密数据执行计算，且计算结果任然保持加密。这非常的有用，比如说你想通过 DNA 找寻你的亲人，但你又想对自己的 DNA 数据保密，这时同态加密就起作用啦，你可以上传加密后的 DNA 数据到数据库，然后他们就可以为你提供匹配服务并将结果返还给你。而在这过程中，服务提供者对这些数据是完全不知情的。
 
 常见的类型有：**部分同态** (partially homomorphic) 、**有点同态** (somewhat homomorphic) 、**分级完全同态** (leveled fully homomorphic) 和**完全同态** (fully homomorphic) 加密。
 
