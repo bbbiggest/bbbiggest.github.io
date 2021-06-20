@@ -11,6 +11,7 @@ newbaseurl: /
 
 # Website info
 title: bbig
+owner: bbig
 description: bbbiggest's blog
 cover: assets/images/blog-cover.jpg
 logo: assets/images/blog-icon.png
