@@ -18,3 +18,8 @@ notes:
   name: notes
   description: Study notes 
   cover: assets/images/bear.jpg
+inspiration:
+ name: inspiration
+ description: Some recent thoughts
+ cover: assets/images/inspiration.jpg
+ 
