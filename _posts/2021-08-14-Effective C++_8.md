@@ -4,12 +4,11 @@ current: post
 cover: assets/images/Reaper.jpg
 navigation: True
 title: 《Effective C++》读书笔记（八）
-date: 2021-08-14 14:41:11
+date: 2021-08-14 22:41:11
 tags: [notes]
 class: post-template
 subclass: 'post'
 author: bbig
-
 ---
 
 ##  《Effective C++》读书笔记（八）
@@ -33,7 +32,7 @@ void print2nd(const C &container)
 }
 ```
 
-但这是错误的，因为这对解析器来说会引起歧义，因为它既可以是一个类型，一个指向迭代器的指针类型，也可以是一个 C 里面叫做 `const_iterator` 的变量然后乘上一个全局变量 x 
+但这是错误的，因为这对解析器来说会引起歧义，因为它既可以是一个类型，一个指向迭代器的指针类型，也可以是一个 C 里面叫做 `const_iterator` 的变量然后乘上一个全局变量 x
 
 为了消除这一歧义，必须要说明它是一个类型，所以需要在它前面放置 `typename` ，即
 
