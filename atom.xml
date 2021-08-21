@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>bbbiggest's blog</description>
+    <link>
+    </link>
+    
+      
+      <item>
+        <title>正则表达式</title>
+        
+          <description>&lt;h2 id=&quot;正则表达式&quot;&gt;正则表达式&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 21 Aug 2021 15:18:12 +0000</pubDate>
+        <link>
+        /regular_expression</link>
+        <guid isPermaLink="true">/regular_expression</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（八）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记八&quot;&gt;《Effective C++》读书笔记（八）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 14 Aug 2021 22:41:11 +0000</pubDate>
+        <link>
+        /Effective-C++_8</link>
+        <guid isPermaLink="true">/Effective-C++_8</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（七）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记七&quot;&gt;《Effective C++》读书笔记（七）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 07 Aug 2021 23:12:10 +0000</pubDate>
+        <link>
+        /Effective-C++_7</link>
+        <guid isPermaLink="true">/Effective-C++_7</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（六）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记六&quot;&gt;《Effective C++》读书笔记（六）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 31 Jul 2021 22:13:09 +0000</pubDate>
+        <link>
+        /Effective-C++_6</link>
+        <guid isPermaLink="true">/Effective-C++_6</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（五）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记五&quot;&gt;《Effective C++》读书笔记（五）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 24 Jul 2021 23:26:08 +0000</pubDate>
+        <link>
+        /Effective-C++_5</link>
+        <guid isPermaLink="true">/Effective-C++_5</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（四）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记四&quot;&gt;《Effective C++》读书笔记（四）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 17 Jul 2021 22:42:07 +0000</pubDate>
+        <link>
+        /Effective-C++_4</link>
+        <guid isPermaLink="true">/Effective-C++_4</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（三）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记三&quot;&gt;《Effective C++》读书笔记（三）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 10 Jul 2021 20:11:06 +0000</pubDate>
+        <link>
+        /Effective-C++_3</link>
+        <guid isPermaLink="true">/Effective-C++_3</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（二）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记二&quot;&gt;《Effective C++》读书笔记（二）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 03 Jul 2021 19:57:05 +0000</pubDate>
+        <link>
+        /Effective-C++_2</link>
+        <guid isPermaLink="true">/Effective-C++_2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（一）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记一&quot;&gt;《Effective C++》读书笔记（一）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 26 Jun 2021 18:23:04 +0000</pubDate>
+        <link>
+        /Effective-C++_1</link>
+        <guid isPermaLink="true">/Effective-C++_1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Fully homomorphic encryption 全同态加密</title>
+        
+          <description>&lt;h2 id=&quot;同态加密&quot;&gt;同态加密&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 19 Jun 2021 21:05:02 +0000</pubDate>
+        <link>
+        /homomorphic</link>
+        <guid isPermaLink="true">/homomorphic</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Welcome to bbbiggest</title>
+        
+          <description>&lt;h3 id=&quot;hello&quot;&gt;Hello!&lt;/h3&gt;
+&lt;p&gt;Ready to start!!!&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 03 May 2021 15:11:00 +0000</pubDate>
+        <link>
+        /start</link>
+        <guid isPermaLink="true">/start</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

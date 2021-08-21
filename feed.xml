@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-21T18:52:59+00:00</updated><id>/feed.xml</id><title type="html">bbig</title><subtitle>bbbiggest's blog</subtitle><entry><title type="html">正则表达式</title><link href="/regular_expression" rel="alternate" type="text/html" title="正则表达式" /><published>2021-08-21T15:18:12+00:00</published><updated>2021-08-21T15:18:12+00:00</updated><id>/regular_expression</id><content type="html" xml:base="/regular_expression">&lt;h2 id=&quot;正则表达式&quot;&gt;正则表达式&lt;/h2&gt;
+
+&lt;p&gt;最近学了一点正则表达式&lt;/p&gt;
+
+&lt;p&gt;先来看一段正则表达式 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(?P&amp;lt;Year&amp;gt;\d{4})-(?P&amp;lt;Month&amp;gt;\d{2})-(?P&amp;lt;Day&amp;gt;\d{2})&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;它能匹配年月日，像这种 “2021-08-21”, “2021-09-02”&lt;/p&gt;
+
+&lt;p&gt;但无法匹配 “2021,08,21”, “2021-8-21” 等，必须带有前导 0&lt;/p&gt;
+
+&lt;p&gt;但是怎么做到的呢，&lt;del&gt;没错！通过 &amp;lt;&amp;gt; 里的英文单词来匹配&lt;/del&gt; 先分开来看&lt;/p&gt;
+
+&lt;p&gt;首先，年份肯定是数字，所以要匹配数字，然后吧&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\d&lt;/code&gt; 匹配&lt;strong&gt;数字&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\w&lt;/code&gt; 匹配&lt;strong&gt;下划线&lt;/strong&gt;和任何一个&lt;strong&gt;数字&lt;/strong&gt;、&lt;strong&gt;字母&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.&lt;/code&gt; 匹配&lt;strong&gt;除了&lt;/strong&gt;换行符外的&lt;strong&gt;任何字符&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\s&lt;/code&gt; 匹配任何&lt;strong&gt;空白字符&lt;/strong&gt;，包括空格、换行符、回车符、制表符、换页符、垂直制表符&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\S&lt;/code&gt; 跟 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\s&lt;/code&gt; 相反，匹配任何&lt;strong&gt;非空白字符&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\n&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\r&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\t&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\f&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\v&lt;/code&gt; 就分别表示&lt;strong&gt;换行符&lt;/strong&gt;、&lt;strong&gt;回车符&lt;/strong&gt;、&lt;strong&gt;制表符&lt;/strong&gt;、&lt;strong&gt;换页符&lt;/strong&gt;、&lt;strong&gt;垂直制表符&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;空格的话用&lt;strong&gt;反斜杠加空格&lt;/strong&gt;表示，即 ‘\ ‘&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;所以刚刚那一大串里的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\d&lt;/code&gt; 才是真正匹配数字的，而后面的花括号则是&lt;strong&gt;限定符&lt;/strong&gt;，用来指定匹配的&lt;strong&gt;次数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（以下的 3 个 n 均为&lt;strong&gt;非负整数&lt;/strong&gt;）&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{n}&lt;/code&gt; 表示要匹配&lt;strong&gt;刚好&lt;/strong&gt; n 次，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\d{4}&lt;/code&gt; 就表示要正好匹配 4 个数字&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{n,}&lt;/code&gt; 表示&lt;strong&gt;至少&lt;/strong&gt;要匹配 n 次&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{n, m}&lt;/code&gt; 表示 (n ≤ 匹配次数 ≤ m)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*&lt;/code&gt; 表示 (匹配次数 ≥ 0)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+&lt;/code&gt; 表示 (匹配次数 ≥ 1)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;?&lt;/code&gt; 表示 (0 ≤ 匹配次数 ≤ 1)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;但 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-&lt;/code&gt; 是&lt;strong&gt;没有&lt;/strong&gt;特殊含义的，所以如果要匹配年月日的话，正则表达式就应该这么写&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\d{4}-\d{2}-\d{2}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;小括号&lt;/strong&gt;括起来的内容是&lt;strong&gt;子表达式&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;()&lt;/code&gt; 标记一个&lt;strong&gt;子表达式&lt;/strong&gt;的开始和结束位置，子表达式&lt;strong&gt;可以获取&lt;/strong&gt;供以后使用&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;^&lt;/code&gt; 匹配输入字符串的&lt;strong&gt;开始&lt;/strong&gt;位置。但当其在中括号中使用时，表示&lt;strong&gt;不接受&lt;/strong&gt;该方括号表达式中的字符集合。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$&lt;/code&gt; 匹配输入字符串的&lt;strong&gt;结尾&lt;/strong&gt;位置&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;而原本的年月日中的括号是&lt;strong&gt;命名编号捕获组&lt;/strong&gt;，使用方法如下&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(?P&amp;lt;名字&amp;gt;表达式)&lt;/code&gt; 后续可&lt;strong&gt;用”名字”获取&lt;/strong&gt;子表达式匹配到的内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;中括号括起来的内容表示一个集合&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[A-Z]&lt;/code&gt; 匹配所有&lt;strong&gt;大写字母&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[a-f0-9]&lt;/code&gt; 匹配&lt;strong&gt;十六进制&lt;/strong&gt;数字&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[ABC]&lt;/code&gt; 匹配 A, B, C 三者&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">正则表达式</summary></entry><entry><title type="html">《Effective C++》读书笔记（八）</title><link href="/Effective-C++_8" rel="alternate" type="text/html" title="《Effective C++》读书笔记（八）" /><published>2021-08-14T22:41:11+00:00</published><updated>2021-08-14T22:41:11+00:00</updated><id>/Effective%20C++_8</id><content type="html" xml:base="/Effective-C++_8">&lt;h2 id=&quot;effective-c读书笔记八&quot;&gt;《Effective C++》读书笔记（八）&lt;/h2&gt;
+
+&lt;p&gt;《 Effective C++ 改善程序与设计的 55 个具体做法》模板与泛型编程&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;每周看书的时间太少了吧，这个系列竟然都写到八了，八个星期还没看完这本书&lt;/del&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;typename&quot;&gt;typename&lt;/h3&gt;
+
+&lt;p&gt;假设你有下面这样的一个模板函数&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print2nd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const_iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但这是错误的，因为这对解析器来说会引起歧义，因为它既可以是一个类型，一个指向迭代器的指针类型，也可以是一个 C 里面叫做 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;const_iterator&lt;/code&gt; 的变量然后乘上一个全局变量 x&lt;/p&gt;
+
+&lt;p&gt;为了消除这一歧义，必须要说明它是一个类型，所以需要在它前面放置 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;typename&lt;/code&gt; ，即&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print2nd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const_iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">《Effective C++》读书笔记（八）</summary></entry><entry><title type="html">《Effective C++》读书笔记（七）</title><link href="/Effective-C++_7" rel="alternate" type="text/html" title="《Effective C++》读书笔记（七）" /><published>2021-08-07T23:12:10+00:00</published><updated>2021-08-07T23:12:10+00:00</updated><id>/Effective%20C++_7</id><content type="html" xml:base="/Effective-C++_7">&lt;h2 id=&quot;effective-c读书笔记七&quot;&gt;《Effective C++》读书笔记（七）&lt;/h2&gt;
+
+&lt;p&gt;《 Effective C++ 改善程序与设计的 55 个具体做法》继承与面向对象设计&lt;/p&gt;
+
+&lt;h3 id=&quot;using-声明式&quot;&gt;using 声明式&lt;/h3&gt;
+
+&lt;p&gt;假设基类的定义为&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mf3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mf3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后有个派生类想&lt;strong&gt;继承&lt;/strong&gt;函数 mf3 ，并且还想&lt;strong&gt;重载&lt;/strong&gt;它&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Derived&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mf3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但是此时假如&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Derived&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mf3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mf3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 错误&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;会发现第二条语句错误，这是因为 Base::mf3 被 Derived::mf3 的作用域&lt;strong&gt;遮掩&lt;/strong&gt;了&lt;/p&gt;
+
+&lt;p&gt;此时可以使用 &lt;strong&gt;using 声明式&lt;/strong&gt;解决这个问题&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Derived&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mf3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mf3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;即可让 Base 类内名为 mf3 的所有东西在派生类的&lt;strong&gt;作用域&lt;/strong&gt;内都可见&lt;/p&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">《Effective C++》读书笔记（七）</summary></entry><entry><title type="html">《Effective C++》读书笔记（六）</title><link href="/Effective-C++_6" rel="alternate" type="text/html" title="《Effective C++》读书笔记（六）" /><published>2021-07-31T22:13:09+00:00</published><updated>2021-07-31T22:13:09+00:00</updated><id>/Effective%20C++_6</id><content type="html" xml:base="/Effective-C++_6">&lt;h2 id=&quot;effective-c读书笔记六&quot;&gt;《Effective C++》读书笔记（六）&lt;/h2&gt;
+
+&lt;p&gt;《 Effective C++ 改善程序与设计的 55 个具体做法》实现&lt;/p&gt;
+
+&lt;h3 id=&quot;异常安全&quot;&gt;“异常安全”&lt;/h3&gt;
+
+&lt;p&gt;假设有个希望用于&lt;strong&gt;多线程&lt;/strong&gt;环境的 class 如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrettyMenu&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;changeBackground&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;istream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgSrc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nl&quot;&gt;private:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Mutex&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mutex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Image&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bgImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageChanges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;它改变背景图像的 changeBackground 函数的一个可能实现如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrettyMenu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeBackground&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;istream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgSrc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bgImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageChanges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;bgImage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgSrc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;unlock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但当 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new Image(imgSrc)&lt;/code&gt; &lt;strong&gt;抛出异常&lt;/strong&gt;时，就不会执行 unlock 的调用，互斥器就会永远被把持住了；而且此时 bgImage 指向的是一个已删除的对象。这就导致了&lt;strong&gt;资源泄露&lt;/strong&gt;和&lt;strong&gt;数据败坏&lt;/strong&gt;，所以从“异常安全性”的角度来看，这个函数很糟，它没有满足“异常安全”的任何一个条件。&lt;/p&gt;
+
+&lt;h3 id=&quot;异常安全函数的三个保证&quot;&gt;异常安全函数的三个保证&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;基本承诺&lt;/strong&gt;：当异常被抛出时，程序内的任何事物仍然保持在&lt;strong&gt;有效&lt;/strong&gt;条件下。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;强烈保证&lt;/strong&gt;：如果异常被抛出，程序状态&lt;strong&gt;不改变&lt;/strong&gt;。即，如果函数成功，就是完全成功；如果失败则会回到调用函数之前的状态。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;不抛掷保证&lt;/strong&gt;：承诺&lt;strong&gt;绝不抛出异常&lt;/strong&gt;，因为它们总是能够完成它们原先承诺的功能。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;异常安全码 (Exception-safe code) &lt;strong&gt;必须&lt;/strong&gt;提供上述三种保证之一。如果没有，则它就不具备&lt;strong&gt;异常安全性&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;为此，我们可以&lt;strong&gt;以对象管理资源&lt;/strong&gt;、&lt;strong&gt;重新排列语句次序&lt;/strong&gt;、使用 “&lt;strong&gt;copy and swap&lt;/strong&gt;” 策略，如：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PMImpl&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tr1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shared_ptr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bgImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageChanges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PrettyMenu&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;private:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Mutex&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mutex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tr1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shared_ptr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PMImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pImpl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrettyMenu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeBackground&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;istream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgSrc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Lock&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tr1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shared_ptr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PMImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pNew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PMImpl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pImpl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pNew&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bgImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgSrc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pNew&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageChanges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pImpl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pNew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;与一开始的代码相比，首先导入了 Lock 类（详见&lt;a href=&quot;https://bbbiggest.github.io/Effective-C++_4&quot;&gt;读书笔记（四）&lt;/a&gt;），确保互斥器被&lt;strong&gt;及时释放&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;然后使用了 reset 函数，使得 delete 只在 reset 函数内被使用，所以只有参数 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new Image(imgSrc)&lt;/code&gt; 被成功&lt;strong&gt;生成之后&lt;/strong&gt;才会被调用。&lt;/p&gt;
+
+&lt;p&gt;最后所有的修改都是在&lt;strong&gt;副本&lt;/strong&gt;上，原对象保持&lt;strong&gt;未改变&lt;/strong&gt;状态，待&lt;strong&gt;所有改变都成功后&lt;/strong&gt;再进行置换。&lt;/p&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">《Effective C++》读书笔记（六）</summary></entry><entry><title type="html">《Effective C++》读书笔记（五）</title><link href="/Effective-C++_5" rel="alternate" type="text/html" title="《Effective C++》读书笔记（五）" /><published>2021-07-24T23:26:08+00:00</published><updated>2021-07-24T23:26:08+00:00</updated><id>/Effective%20C++_5</id><content type="html" xml:base="/Effective-C++_5">&lt;h2 id=&quot;effective-c读书笔记五&quot;&gt;《Effective C++》读书笔记（五）&lt;/h2&gt;
+
+&lt;p&gt;《 Effective C++ 改善程序与设计的 55 个具体做法》设计与声明&lt;/p&gt;
+
+&lt;h3 id=&quot;预防接口被误用&quot;&gt;预防”接口被误用“&lt;/h3&gt;
+
+&lt;p&gt;比较安全的做法是预先定义所有的有效的值，如下面的 Months ：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Month&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Month&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Jan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Month&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Feb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Month&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nl&quot;&gt;private:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;explicit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;上面这种封装其内的数据、导入新类型的方法，使接口更容易被使用且不被误用，然后客户可以像下面那样使用接口，而不用担心他们以错误的顺序传递参数或者传递无效参数。&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Month&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Mar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Day&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1995&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">《Effective C++》读书笔记（五）</summary></entry><entry><title type="html">《Effective C++》读书笔记（四）</title><link href="/Effective-C++_4" rel="alternate" type="text/html" title="《Effective C++》读书笔记（四）" /><published>2021-07-17T22:42:07+00:00</published><updated>2021-07-17T22:42:07+00:00</updated><id>/Effective%20C++_4</id><content type="html" xml:base="/Effective-C++_4">&lt;h2 id=&quot;effective-c读书笔记四&quot;&gt;《Effective C++》读书笔记（四）&lt;/h2&gt;
+
+&lt;p&gt;《 Effective C++ 改善程序与设计的 55 个具体做法》资源管理&lt;/p&gt;
+
+&lt;h3 id=&quot;以对象管理资源&quot;&gt;以对象管理资源&lt;/h3&gt;
+
+&lt;p&gt;为了确保资源总是被&lt;strong&gt;释放&lt;/strong&gt;，可以把资源&lt;strong&gt;放进对象内&lt;/strong&gt;，然后当控制流离开时，该对象的&lt;strong&gt;析构函数&lt;/strong&gt;会自动释放那些资源。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;std::tr1::shared_ptr&lt;/strong&gt; 就是这样的，它是”引用计数型智慧指针“ (reference-counting smart pointer; RSCP) ，会持续追踪&lt;strong&gt;共有多少对象&lt;/strong&gt;指向某笔资源，它在其析构函数内做 &lt;strong&gt;delete&lt;/strong&gt; ，当&lt;strong&gt;无人指向&lt;/strong&gt;它时会自动删除资源，但它无法打破&lt;strong&gt;环状引用&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;除此之外， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tr1::shared_ptr&lt;/code&gt; 允许指定”删除器“ (deleter) ，那是一个函数或者函数对象，当引用次数为 0 时便被调用，如：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Lock&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;explicit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Mutex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 以某个 Mutex 初始化 shared_ptr&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mutexPtr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unlock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 并以 unlock 函数为删除器&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutexPtr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// get 显示转换，返回智能指针内部的原始指针&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nl&quot;&gt;private:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tr1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shared_ptr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Mutex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mutexPtr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">《Effective C++》读书笔记（四）</summary></entry><entry><title type="html">《Effective C++》读书笔记（三）</title><link href="/Effective-C++_3" rel="alternate" type="text/html" title="《Effective C++》读书笔记（三）" /><published>2021-07-10T20:11:06+00:00</published><updated>2021-07-10T20:11:06+00:00</updated><id>/Effective%20C++_3</id><content type="html" xml:base="/Effective-C++_3">&lt;h2 id=&quot;effective-c读书笔记三&quot;&gt;《Effective C++》读书笔记（三）&lt;/h2&gt;
+
+&lt;p&gt;《 Effective C++ 改善程序与设计的 55 个具体做法》条款 08 ~ 条款 12&lt;/p&gt;
+
+&lt;h3 id=&quot;在构造和析构期间不要调用-virtual-函数&quot;&gt;在构造和析构期间不要调用 virtual 函数&lt;/h3&gt;
+
+&lt;p&gt;假如你在&lt;strong&gt;基类&lt;/strong&gt;的&lt;strong&gt;构造&lt;/strong&gt;函数中调用了一个&lt;strong&gt;虚函数&lt;/strong&gt;，然后当你在建立一个&lt;strong&gt;派生类&lt;/strong&gt;对象时，会发现它调用的那个&lt;strong&gt;虚函数&lt;/strong&gt;并不是你想要的那个版本&lt;/p&gt;
+
+&lt;p&gt;因为在派生类的构造函数&lt;strong&gt;调用之前&lt;/strong&gt;，基类的构造函数一定会被&lt;strong&gt;更早&lt;/strong&gt;的调用，然后在&lt;strong&gt;基类构造期间&lt;/strong&gt;，派生类的成员变量并&lt;strong&gt;未初始化&lt;/strong&gt;，你所建立的对象类型暂时是&lt;strong&gt;基类&lt;/strong&gt;的而不是派生类的，如果使用运行期类型信息，也会把对象视为&lt;strong&gt;基类类型&lt;/strong&gt;，所以调用的那个虚函数也就不会&lt;strong&gt;下降&lt;/strong&gt;到派生类阶层，对象在&lt;strong&gt;派生类构造函数执行前&lt;/strong&gt;不会成为一个派生类对象。&lt;strong&gt;析构&lt;/strong&gt;函数也是同理&lt;/p&gt;
+
+&lt;p&gt;所以要想解决这个问题，可以令派生类将必要的&lt;strong&gt;构造信息向上传递&lt;/strong&gt;至基类构造函数，如：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Transaction&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;explicit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logTransaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Transaction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;logTransaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 非虚函数的调用&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BuyTransaction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Transaction&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;BuyTransaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;createLogString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 将log信息传给基类构造函数&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nl&quot;&gt;private:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createLogString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;其中 createLogString 函数是&lt;strong&gt;静态&lt;/strong&gt;的，也就不可能意外地指向&lt;strong&gt;尚未初始化&lt;/strong&gt;的成员变量&lt;/p&gt;
+
+&lt;h3 id=&quot;stdabort&quot;&gt;std::abort()&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;中止&lt;/strong&gt;当前进程，产生程序终止的异常。&lt;/p&gt;
+
+&lt;p&gt;没有返回值，而且程序终止时不会破坏任何对象，不会导致数据竞争。&lt;/p&gt;
+
+&lt;p&gt;如果一个程序遇到”于析构期间发生的错误”后无法继续执行，就可以制作运转记录，记下这个失败，然后调用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;std::abort()&lt;/code&gt; 结束程序，这样可以&lt;strong&gt;阻止异常从析构函数传播出去&lt;/strong&gt;。因为从&lt;strong&gt;析构&lt;/strong&gt;函数中&lt;strong&gt;抛出异常&lt;/strong&gt;是危险的，如果抛出发生在&lt;strong&gt;堆栈展开&lt;/strong&gt;操作期间（如另一个异常已经在传播），程序通常会&lt;strong&gt;崩溃&lt;/strong&gt;；如果子类析构函数抛出异常，则不会调用父析构函数，会使对象处于部分销毁状态。所以如果一个被析构函数调用的函数可能抛出异常，析构函数应该&lt;strong&gt;捕捉&lt;/strong&gt;任何异常，然后&lt;strong&gt;吞下它们&lt;/strong&gt;或&lt;strong&gt;结束程序&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;确保-operator-能正确处理自我赋值&quot;&gt;确保 operator= 能正确处理自我赋值&lt;/h3&gt;
+
+&lt;p&gt;下面是自我赋值时并&lt;strong&gt;不安全&lt;/strong&gt;的实现代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bitmap&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Widget&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;private:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Bitmap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rhs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pb&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bitmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rhs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;假如 *this 和 rhs 是&lt;strong&gt;同一个&lt;/strong&gt;对象时， delete 销毁操作之后，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*rhs.pb&lt;/code&gt; 所指向的就是一个&lt;strong&gt;已被删除&lt;/strong&gt;的对象&lt;/p&gt;
+
+&lt;p&gt;所以如果想解决这个问题，可以先进行”&lt;strong&gt;证同测试&lt;/strong&gt; (identity test) “，如果是自我赋值则不做任何事情。或者可以精心安排一下&lt;strong&gt;语句顺序&lt;/strong&gt;，记住原先的 pb ，然后先复制再删除&lt;/p&gt;
+
+&lt;p&gt;可以使用 &lt;strong&gt;copy and swap&lt;/strong&gt; 技术：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Widget&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rhs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 交换*this和rhs的数据&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rhs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Widget&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rhs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">《Effective C++》读书笔记（三）</summary></entry><entry><title type="html">《Effective C++》读书笔记（二）</title><link href="/Effective-C++_2" rel="alternate" type="text/html" title="《Effective C++》读书笔记（二）" /><published>2021-07-03T19:57:05+00:00</published><updated>2021-07-03T19:57:05+00:00</updated><id>/Effective%20C++_2</id><content type="html" xml:base="/Effective-C++_2">&lt;h2 id=&quot;effective-c读书笔记二&quot;&gt;《Effective C++》读书笔记（二）&lt;/h2&gt;
+
+&lt;p&gt;《 Effective C++ 改善程序与设计的 55 个具体做法》条款 05 ~ 条款 07、条款39&lt;/p&gt;
+
+&lt;h3 id=&quot;可将成员函数声明为-private-以驳回编译器自动提供的机能&quot;&gt;可将成员函数声明为 private 以驳回编译器自动提供的机能&lt;/h3&gt;
+
+&lt;p&gt;假如你有一个类是不希望支持拷贝操作的，但当某些人尝试调用时，编译器会自动创建拷贝构造函数或拷贝赋值运算符，此时你可以令这些函数为 private ，同时不去定义它们，如：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeForSale&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+
+&lt;span class=&quot;nl&quot;&gt;private:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;HomeForSale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HomeForSale&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 只有声明&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;HomeForSale&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HomeForSale&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这样当别人企图拷贝 HomeForSale 对象时，编译器会报错；如果是在成员函数或者友元函数中这么操作，那连接器会报错。&lt;/p&gt;
+
+&lt;p&gt;或者也可以像下面这样，这样可以使得连接期错误移至编译期&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Uncopyable&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;protected:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Uncopyable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 允许派生类对象构造和析构&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Uncopyable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+
+&lt;span class=&quot;nl&quot;&gt;private:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Uncopyable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Uncopyable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 但阻止拷贝操作&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Uncopyable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Uncopyable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeForSale&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Uncopyable&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;private-继承&quot;&gt;private 继承&lt;/h3&gt;
+
+&lt;p&gt;private 继承纯粹只是一种实现技术，意味着只有部分被继承，接口部分应略去。&lt;/p&gt;
+
+&lt;p&gt;有两条 private 的继承规则&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果是 private 继承，编译器不会自动将一个派生类对象转换为一个基类对象&lt;/li&gt;
+  &lt;li&gt;由 private 继承来的所有成员，在派生类中都会变成 private 属性&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;为多态基类声明-virtual-析构函数&quot;&gt;为多态基类声明 virtual 析构函数&lt;/h3&gt;
+
+&lt;p&gt;如果一个派生类对象经由一个基类指针被删除，而其基类带着一个 non-virtual 的析构函数，实际执行时通常会让对象的派生类成分没被销毁，而其基类成分被销毁，于是造成了一个”局部销毁“对象，可能会造成资源泄漏、败坏数据结构&lt;/p&gt;
+
+&lt;p&gt;所以如果是带有多态性质的基类，就应该为其声明一个 virtual 析构函数，然后删除派生类对象时，就会销毁整个对象，包括派生类部分&lt;/p&gt;
+
+&lt;p&gt;当然如果不是作为基类或是不是为了具备多态性，就不该声明 virtual 析构函数&lt;/p&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">《Effective C++》读书笔记（二）</summary></entry><entry><title type="html">《Effective C++》读书笔记（一）</title><link href="/Effective-C++_1" rel="alternate" type="text/html" title="《Effective C++》读书笔记（一）" /><published>2021-06-26T18:23:04+00:00</published><updated>2021-06-26T18:23:04+00:00</updated><id>/Effective%20C++_1</id><content type="html" xml:base="/Effective-C++_1">&lt;h2 id=&quot;effective-c读书笔记一&quot;&gt;《Effective C++》读书笔记（一）&lt;/h2&gt;
+
+&lt;p&gt;读了《 Effective C++ 改善程序与设计的 55 个具体做法》的前 4 个条款&lt;/p&gt;
+
+&lt;p&gt;感觉这一定是一本很棒的书&lt;/p&gt;
+
+&lt;h3 id=&quot;enum&quot;&gt;enum&lt;/h3&gt;
+
+&lt;p&gt;首先是学到了 enum 的一些其它用法，不仅仅是枚举类型，还可以当成一个整数&lt;strong&gt;常量&lt;/strong&gt;来使用，这被称为 “enum hack” 。与 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#define&lt;/code&gt; 类似，编译器不会为 enum &lt;strong&gt;分配内存&lt;/strong&gt;，当然也就无法取它的地址。但不同的是，它拥有&lt;strong&gt;作用域&lt;/strong&gt; 。”enum hack” 还是&lt;strong&gt;模板元编程&lt;/strong&gt;的基础技术。&lt;/p&gt;
+
+&lt;h3 id=&quot;将常量性转除&quot;&gt;将常量性转除&lt;/h3&gt;
+
+&lt;p&gt;有时为了使成员函数可作用于 const 对象，需要一个 const 成员函数，但这会带来&lt;strong&gt;代码重复&lt;/strong&gt;以及伴随的编译时间、维护、代码膨胀等问题，因此需要令其中一个调用另一个，也就促使了我们将常量性转除，即可以像下面这样&lt;strong&gt;令 non-const 调用 const&lt;/strong&gt; ：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TextBlock&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[](&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[](&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const_cast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;static_cast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TextBlock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;用成员初始化列表替换赋值动作&quot;&gt;用成员初始化列表替换赋值动作&lt;/h3&gt;
+
+&lt;p&gt;初始化列表，书上叫它成员初值列 (member initialization list)&lt;/p&gt;
+
+&lt;p&gt;也就是用&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ABEntry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ABEntry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PhoneNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;theName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;theAddress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;thePhones&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phones&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;numTimesConsulted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;来替换&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ABEntry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ABEntry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PhonrNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;theName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;theAddress&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;thePhones&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phones&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;numTimesConsulted&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这是一个我以前没注意过的点，这两种构造函数我都是随机写的，不过也可能是因为我写的大部分类的成员变量都是内置类型，久而久之就忘记了这一点&lt;/p&gt;
+
+&lt;p&gt;后面这一种其实是&lt;strong&gt;赋值&lt;/strong&gt;而非初始化，成员初值列的初始化动作发生在进入构造函数本体之前。也就是说，后面的写法其实相当于用成员的默认构造函数先设了一次&lt;strong&gt;初值&lt;/strong&gt;，然乎马上又对它们赋予&lt;strong&gt;新值&lt;/strong&gt;，所以默认构造函数所做的都浪费掉了&lt;/p&gt;
+
+&lt;p&gt;所以第一种更为&lt;strong&gt;高效&lt;/strong&gt;，它只调用&lt;strong&gt;一次&lt;/strong&gt;拷贝构造函数&lt;/p&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">《Effective C++》读书笔记（一）</summary></entry><entry><title type="html">Fully homomorphic encryption 全同态加密</title><link href="/homomorphic" rel="alternate" type="text/html" title="Fully homomorphic encryption 全同态加密" /><published>2021-06-19T21:05:02+00:00</published><updated>2021-06-19T21:05:02+00:00</updated><id>/homomorphic</id><content type="html" xml:base="/homomorphic">&lt;h2 id=&quot;同态加密&quot;&gt;同态加密&lt;/h2&gt;
+
+&lt;p&gt;同态加密是一种加密形式，它允许在不先解密的情况下对其加密数据执行计算，且计算结果任然保持加密。这非常的有用，比如说你想通过 DNA 找寻你的亲人，但你又想对自己的 DNA 数据保密，这时同态加密就起作用啦，你可以上传加密后的 DNA 数据到数据库，然后他们就可以为你提供匹配服务并将结果返还给你。而在这过程中，服务提供者对这些数据是完全不知情的。&lt;/p&gt;
+
+&lt;p&gt;常见的类型有：&lt;strong&gt;部分同态&lt;/strong&gt; (partially homomorphic) 、&lt;strong&gt;有点同态&lt;/strong&gt; (somewhat homomorphic) 、&lt;strong&gt;分级完全同态&lt;/strong&gt; (leveled fully homomorphic) 和&lt;strong&gt;完全同态&lt;/strong&gt; (fully homomorphic) 加密。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;部分同态仅支持&lt;strong&gt;一种&lt;/strong&gt;类型的同态操作，如加法、乘法，因此通常最为高效，可以对密文执行&lt;strong&gt;无限次&lt;/strong&gt;的加法或乘法运算&lt;/li&gt;
+  &lt;li&gt;有点同态同时支持&lt;strong&gt;加法和乘法&lt;/strong&gt;的同态操作，因此它比部分同态更通用，不过只能执行&lt;strong&gt;有限次数&lt;/strong&gt;的同态操作&lt;/li&gt;
+  &lt;li&gt;分级完全同态与有点同态类似，都是受限的电路系列，但二者的区别在于使用 LFHE 可以&lt;strong&gt;提前“计划”&lt;/strong&gt;要计算哪种类型的函数（即达到什么深度）&lt;/li&gt;
+  &lt;li&gt;完全同态则允许对加密消息进行大量&lt;strong&gt;不同类型&lt;/strong&gt;的评估操作，次数&lt;strong&gt;不受限制&lt;/strong&gt;，是同态加密的最强概念。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;总的来说就是，部分同态可以无限制的加&lt;strong&gt;或者&lt;/strong&gt;乘，全同态是无限制的加&lt;strong&gt;和&lt;/strong&gt;乘，有点同态 (somewhat) 是&lt;strong&gt;有限制&lt;/strong&gt;的加和乘。&lt;/p&gt;
+
+&lt;p&gt;最初在20世纪70年代提出，但直到 2009 年才可用，所以这是一个相当新的领域&lt;/p&gt;
+
+&lt;p&gt;当今最有效的方案有：TFHE、BGV, BFV、CKKS 等&lt;/p&gt;
+
+&lt;p&gt;通常同态加密有&lt;strong&gt;五个步骤&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;设置&lt;/p&gt;
+
+    &lt;p&gt;​	选择加密的&lt;strong&gt;方案&lt;/strong&gt;、一些&lt;strong&gt;安全参数&lt;/strong&gt;和一些功能的&lt;strong&gt;性能参数&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;密钥生成&lt;/p&gt;
+
+    &lt;p&gt;​	包括&lt;strong&gt;私钥&lt;/strong&gt; (Secret key) 、&lt;strong&gt;公钥&lt;/strong&gt; (public key) 、&lt;strong&gt;重线性化密钥&lt;/strong&gt; (relinearization key) 和&lt;strong&gt;伽罗华密钥&lt;/strong&gt; (Galois keys) ，其中后三者是公开的&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;加密&lt;/p&gt;
+
+    &lt;p&gt;​	在这里我们加密&lt;strong&gt;数字向量&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;评估&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;解密&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;simd-计算&quot;&gt;SIMD 计算&lt;/h3&gt;
+
+&lt;p&gt;A single instruction multiple data，&lt;strong&gt;单指令多数据&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;当你发出单个指令时，它对所有数据进行操作，我们将同态加密与SIMD一起使用。&lt;/p&gt;
+
+&lt;p&gt;消息是向量，然后将消息编码为明文，明文是多项式，密文是加密后的输出，且密文将具有&lt;strong&gt;随机&lt;/strong&gt;的外观。即，你无法区分你是在加密一条消息还是多条消息，因为密文总是看起来是随机的。&lt;/p&gt;
+
+&lt;p&gt;消息类的数量与多项式的&lt;strong&gt;次数&lt;/strong&gt;有关，次数越高，消息槽越多，并行性也就越高。&lt;/p&gt;
+
+&lt;h3 id=&quot;多项式环&quot;&gt;多项式环&lt;/h3&gt;
+
+&lt;p&gt;一个系数为整数的多项式
+&lt;!-- $$
+R=\mathbb{Z}[X]/(X^n + 1): X^n\equiv-1
+$$ --&gt;
+&lt;img src=&quot;https://bbbiggest.github.io/assets/images/2021-6-19-formula1.png&quot; alt=&quot;2021-6-19-formula1&quot; /&gt;
+&lt;!-- $$
+R_Q=R/Q:系数模 Q 计算
+$$ --&gt;
+&lt;img src=&quot;https://bbbiggest.github.io/assets/images/2021-6-19-formula2.png&quot; alt=&quot;2021-6-19-formula2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注意这里的 Q 是&lt;strong&gt;零平衡&lt;/strong&gt;的，例如：Q = 5 时，系数的取值范围为 {-2, -1, 0, 1, 2} ，而不是 0~4&lt;/p&gt;
+
+&lt;p&gt;接下来的所有计算都遵循上面的规则&lt;/p&gt;
+
+&lt;p&gt;最重要的参数是 n 和 log(Q) ，这两个参数决定了安全性&lt;/p&gt;
+
+&lt;h3 id=&quot;编码和加密&quot;&gt;编码和加密&lt;/h3&gt;
+
+&lt;p&gt;编码器会将消息向量&lt;strong&gt;映射&lt;/strong&gt;到多项式，也就是明文&lt;/p&gt;
+
+&lt;p&gt;加密器会将明文多项式变成密文，实际上就是通过&lt;strong&gt;增加噪点&lt;/strong&gt;来掩盖明文&lt;/p&gt;
+
+&lt;p&gt;然后每次加密都是随机化的密文，所以即使加密相同的明文也总是会生成不同的密文，以此确保其安全性&lt;/p&gt;
+
+&lt;h3 id=&quot;噪点&quot;&gt;噪点&lt;/h3&gt;
+
+&lt;p&gt;有一个&lt;strong&gt;安全区&lt;/strong&gt;，它会将信息与噪点分开，解密时可以用密钥将噪点移除，但随着每一次的同态计算噪点会&lt;strong&gt;越来越大&lt;/strong&gt;，当噪点增加到破坏了其安全区时，解密就会失败。乘法引入的噪点最大。&lt;/p&gt;
+
+&lt;h3 id=&quot;解密和解码&quot;&gt;解密和解码&lt;/h3&gt;
+
+&lt;!-- $$
+R_Q^2 \to R_t or R \to \mathbb{Z}^n_t or \mathbb{C}^{n/2}
+$$ --&gt;
+&lt;p&gt;&lt;img src=&quot;https://bbbiggest.github.io/assets/images/2021-6-19-formula3.png&quot; alt=&quot;2021-6-19-formula3&quot; /&gt;&lt;/p&gt;</content><author><name>bbbiggest</name></author><category term="notes" /><summary type="html">同态加密</summary></entry></feed>
