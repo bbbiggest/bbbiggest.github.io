@@ -43,35 +43,7 @@ author: bbig
 
 3. **编写** docker-compose.yml ，像这样
 
-   ``` json
-   version: "3"
-   services:
-     code-server:
-       image: ghcr.io/linuxserver/code-server
-       deploy:
-         resources:
-           limits:
-             cpus: '0.50'
-             memory: 512M
-           reservations:
-             cpus: '0.25'
-             memory: 256M
-       container_name: code-server
-       environment:
-         - PUID=1000
-         - PGID=1000
-         - TZ=Europe/London
-         - PASSWORD=abc #optional
-         - HASHED_PASSWORD= #optional
-         - SUDO_PASSWORD=abc #optional
-         - SUDO_PASSWORD_HASH= #optional
-         - PROXY_DOMAIN=code-server.my.domain #optional
-       volumes:
-         - /path/to/appdata/config:/config
-       ports:
-         - 8443:8443
-       restart: unless-stopped
-   ```
+   <iframe   src="https://carbon.now.sh/embed?bg=rgba%28171%2C+184%2C+195%2C+1%29&t=one-dark&wt=none&l=application%2Fjson&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=version%253A%2520%25223%2522%250Aservices%253A%250A%2520%2520code-server%253A%250A%2520%2520%2520%2520image%253A%2520ghcr.io%252Flinuxserver%252Fcode-server%250A%2520%2520%2520%2520deploy%253A%250A%2520%2520%2520%2520%2520%2520resources%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520limits%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520cpus%253A%2520%270.50%27%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520memory%253A%2520512M%250A%2520%2520%2520%2520%2520%2520%2520%2520reservations%253A%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520cpus%253A%2520%270.25%27%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520memory%253A%2520256M%250A%2520%2520%2520%2520container_name%253A%2520code-server%250A%2520%2520%2520%2520environment%253A%250A%2520%2520%2520%2520%2520%2520-%2520PUID%253D1000%250A%2520%2520%2520%2520%2520%2520-%2520PGID%253D1000%250A%2520%2520%2520%2520%2520%2520-%2520TZ%253DEurope%252FLondon%250A%2520%2520%2520%2520%2520%2520-%2520PASSWORD%253Dabc%2520%2523optional%250A%2520%2520%2520%2520%2520%2520-%2520HASHED_PASSWORD%253D%2520%2523optional%250A%2520%2520%2520%2520%2520%2520-%2520SUDO_PASSWORD%253Dabc%2520%2523optional%250A%2520%2520%2520%2520%2520%2520-%2520SUDO_PASSWORD_HASH%253D%2520%2523optional%250A%2520%2520%2520%2520%2520%2520-%2520PROXY_DOMAIN%253Dcode-server.my.domain%2520%2523optional%250A%2520%2520%2520%2520volumes%253A%250A%2520%2520%2520%2520%2520%2520-%2520%252Fpath%252Fto%252Fappdata%252Fconfig%253A%252Fconfig%250A%2520%2520%2520%2520ports%253A%250A%2520%2520%2520%2520%2520%2520-%25208443%253A8443%250A%2520%2520%2520%2520restart%253A%2520unless-stopped"   style="width: 589px; height: 671px; border:0; transform: scale(1); overflow:hidden;"   sandbox="allow-scripts allow-same-origin"> </iframe>
 
 4. 在你含有 docker-compose.yml 的文件夹中，**执行** `docker-compose up`
 
