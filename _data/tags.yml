@@ -16,10 +16,13 @@ getting-started:
   cover: False
 notes:
   name: notes
-  description: Study notes 
+  description: Study notes
   cover: assets/images/bear.jpg
 inspiration:
- name: inspiration
- description: Some recent thoughts
- cover: assets/images/inspiration.jpg
- 
+  name: inspiration
+  description: Some recent thoughts
+  cover: assets/images/inspiration.jpg
+sharing:
+  name: sharing
+  description: Results sharing
+  cover: assets/images/dream.png
