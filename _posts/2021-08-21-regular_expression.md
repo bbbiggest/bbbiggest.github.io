@@ -4,7 +4,7 @@ current: post
 cover: assets/images/swing.jpg
 navigation: True
 title: 正则表达式
-date: 2021-08-21 23:18:12
+date: 2021-08-21 23:18:12 +0800
 tags: [notes]
 class: post-template
 subclass: 'post'

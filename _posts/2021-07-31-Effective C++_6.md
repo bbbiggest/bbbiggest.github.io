@@ -4,7 +4,7 @@ current: post
 cover: assets/images/puppy.jpg
 navigation: True
 title: 《Effective C++》读书笔记（六）
-date: 2021-07-31 22:13:09
+date: 2021-07-31 22:13:09 +0800
 tags: [notes]
 class: post-template
 subclass: 'post'

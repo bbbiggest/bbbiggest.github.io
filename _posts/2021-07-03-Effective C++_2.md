@@ -4,7 +4,7 @@ current: post
 cover: assets/images/spring.png
 navigation: True
 title: 《Effective C++》读书笔记（二）
-date: 2021-07-03 19:57:05
+date: 2021-07-03 19:57:05 +0800
 tags: [notes]
 class: post-template
 subclass: 'post'

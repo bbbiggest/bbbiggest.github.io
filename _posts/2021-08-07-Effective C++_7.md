@@ -4,7 +4,7 @@ current: post
 cover: assets/images/bear2.jpg
 navigation: True
 title: 《Effective C++》读书笔记（七）
-date: 2021-08-07 23:12:10
+date: 2021-08-07 23:12:10 +0800
 tags: [notes]
 class: post-template
 subclass: 'post'

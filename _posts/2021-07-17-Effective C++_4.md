@@ -4,7 +4,7 @@ current: post
 cover: assets/images/ice.png
 navigation: True
 title: 《Effective C++》读书笔记（四）
-date: 2021-07-17 22:42:07
+date: 2021-07-17 22:42:07 +0800
 tags: [notes]
 class: post-template
 subclass: 'post'

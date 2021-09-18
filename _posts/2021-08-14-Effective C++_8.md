@@ -4,7 +4,7 @@ current: post
 cover: assets/images/Reaper.jpg
 navigation: True
 title: 《Effective C++》读书笔记（八）
-date: 2021-08-14 22:41:11
+date: 2021-08-14 22:41:11 +0800
 tags: [notes]
 class: post-template
 subclass: 'post'

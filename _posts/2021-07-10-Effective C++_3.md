@@ -4,7 +4,7 @@ current: post
 cover: assets/images/Effective_C++_3.jpg
 navigation: True
 title: 《Effective C++》读书笔记（三）
-date: 2021-07-10 20:11:06
+date: 2021-07-10 20:11:06 +0800
 tags: [notes]
 class: post-template
 subclass: 'post'
