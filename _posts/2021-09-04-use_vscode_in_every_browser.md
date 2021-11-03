@@ -29,7 +29,7 @@ author: bbig
 
 ### 实现
 
-想在 **docker 中**运行，然后 dockerfile **写到一半**，发现 **dockerhub** 上有个**现成的** [linuxserver/code-server](linuxserver/code-server) ，嗯...连 **docker-compose** 都有了，我本来是打算把**配置**、**插件**什么的全部写进 **docker** 里面，但暂时就不**重复造轮子**了
+想在 **docker 中**运行，然后 dockerfile **写到一半**，发现 **dockerhub** 上有个**现成的** [linuxserver/code-server](https://hub.docker.com/r/linuxserver/code-server) ，嗯...连 **docker-compose** 都有了，我本来是打算把**配置**、**插件**什么的全部写进 **docker** 里面，但暂时就不**重复造轮子**了
 
 不过我建议在 docker-compose 中**限制**一下内存，免得又**占用**很多**内存**
 
