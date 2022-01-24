@@ -76,8 +76,13 @@ author: bbig
 ##### WISDOM 离合诗 —— 了解听众
 
 > ​                        **W**hat do you want them to learn?    你想让他们学到什么？
+>
 > What is their **i**nterest in what you've got to say?    他们对你讲的什么感兴趣？
+>
 > ​                                  How **s**ophisticated are they?    他们有多富有经验？
+>
 > ​                            How much **d**etail do they want?    他们想要多少细节？
+>
 > ​     Whom do you want to **o**wn the information?    你想要让谁拥有这些信息？
+>
 > ​     How can you **m**otivate them to listen to you?    你如何促使他们听你说话？
