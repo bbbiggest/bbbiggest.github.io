@@ -3,7 +3,7 @@ layout: post
 current: post
 cover: assets/images/Sci_Fi-Landscape.jpg
 navigation: True
-title: 《UNIX 传奇：历史与会议》读书笔记
+title: 《UNIX 传奇：历史与回忆》读书笔记
 date: 2022-03-19 00:50:43 +0800
 tags: [notes]
 class: post-template
@@ -11,9 +11,9 @@ subclass: 'post'
 author: bbig
 ---
 
-#  《UNIX 传奇：历史与会议》读书笔记
+#  《UNIX 传奇：历史与回忆》读书笔记
 
-《UNIX 传奇：历史与会议》布莱恩 · W. 克尼汉
+《UNIX 传奇：历史与回忆》布莱恩 · W. 克尼汉
 
 
 
