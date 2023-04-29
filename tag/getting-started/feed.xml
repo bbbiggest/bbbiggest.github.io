@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator>
+  <link href="/tag/getting-started/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2023-04-29T16:50:11+00:00</updated>
+  <id>/tag/getting-started/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">bbig | </title>
+  
+
+  
+    <subtitle>bbbiggest's blog</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Welcome to bbbiggest</title>
+      <link href="/start" rel="alternate" type="text/html" title="Welcome to bbbiggest" />
+      <published>2021-05-03T07:11:00+00:00</published>
+      <updated>2021-05-03T07:11:00+00:00</updated>
+      <id>/start</id>
+      <content type="html" xml:base="/start">&lt;h3 id=&quot;hello&quot;&gt;Hello!&lt;/h3&gt;
+&lt;p&gt;Ready to start!!!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Getting started" />
+      
+
+      
+        <summary type="html">Hello! Ready to start!!!</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

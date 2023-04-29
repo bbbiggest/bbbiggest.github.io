@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>bbbiggest's blog</description>
+    <link>
+    </link>
+    
+      
+      <item>
+        <title>Arm 内存模型</title>
+        
+          <description>&lt;h1 id=&quot;arm-内存模型&quot;&gt;Arm 内存模型&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sun, 14 Aug 2022 23:10:53 +0000</pubDate>
+        <link>
+        /arm_memory_model</link>
+        <guid isPermaLink="true">/arm_memory_model</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>如何更优雅的表示红黑树结点</title>
+        
+          <description>&lt;h1 id=&quot;如何更优雅的表示红黑树结点&quot;&gt;如何更优雅的表示红黑树结点&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sun, 24 Jul 2022 21:08:52 +0000</pubDate>
+        <link>
+        /How_to_define_rbtree_node_more_elegantly</link>
+        <guid isPermaLink="true">/How_to_define_rbtree_node_more_elegantly</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《程序员修炼之道》读书笔记（三）</title>
+        
+          <description>&lt;h2 id=&quot;程序员修炼之道读书笔记三&quot;&gt;《程序员修炼之道》读书笔记（三）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sun, 19 Jun 2022 23:54:50 +0000</pubDate>
+        <link>
+        /The_Pragmatic_Programmer_From_Journeyman_to_Master_3</link>
+        <guid isPermaLink="true">/The_Pragmatic_Programmer_From_Journeyman_to_Master_3</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《程序员修炼之道》读书笔记（二）</title>
+        
+          <description>&lt;h2 id=&quot;程序员修炼之道读书笔记二&quot;&gt;《程序员修炼之道》读书笔记（二）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sun, 12 Jun 2022 18:31:49 +0000</pubDate>
+        <link>
+        /The_Pragmatic_Programmer_From_Journeyman_to_Master_2</link>
+        <guid isPermaLink="true">/The_Pragmatic_Programmer_From_Journeyman_to_Master_2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《C10K到C10M》</title>
+        
+          <description>&lt;h1 id=&quot;c10k-到-c10m&quot;&gt;&lt;strong&gt;C10K 到 C10M&lt;/strong&gt;&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Fri, 20 May 2022 21:34:48 +0000</pubDate>
+        <link>
+        /C10K_to_C10M</link>
+        <guid isPermaLink="true">/C10K_to_C10M</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《专注力的技术》读书笔记（一）</title>
+        
+          <description>&lt;h2 id=&quot;专注力的技术读书笔记一&quot;&gt;《专注力的技术》读书笔记（一）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 29 Apr 2022 21:07:47 +0000</pubDate>
+        <link>
+        /zhuanzhulidejishu_1</link>
+        <guid isPermaLink="true">/zhuanzhulidejishu_1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《卡片笔记写作法：如何实现从阅读到写作》读书笔记（一）</title>
+        
+          <description>&lt;h1 id=&quot;卡片笔记写作法如何实现从阅读到写作读书笔记一&quot;&gt;《卡片笔记写作法：如何实现从阅读到写作》读书笔记（一）&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Fri, 22 Apr 2022 23:12:46 +0000</pubDate>
+        <link>
+        /How_to_Take_Smart_Notes_1</link>
+        <guid isPermaLink="true">/How_to_Take_Smart_Notes_1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《拖延心理学》读书笔记（二）</title>
+        
+          <description>&lt;h1 id=&quot;拖延心理学读书笔记二&quot;&gt;《拖延心理学》读书笔记（二）&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Fri, 08 Apr 2022 17:23:46 +0000</pubDate>
+        <link>
+        /procrastination_why_you_do_it_what_to_do_about_it_now_2</link>
+        <guid isPermaLink="true">/procrastination_why_you_do_it_what_to_do_about_it_now_2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《拖延心理学》读书笔记（一）</title>
+        
+          <description>&lt;h1 id=&quot;拖延心理学读书笔记一&quot;&gt;《拖延心理学》读书笔记（一）&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Fri, 01 Apr 2022 18:36:45 +0000</pubDate>
+        <link>
+        /procrastination_why_you_do_it_what_to_do_about_it_now</link>
+        <guid isPermaLink="true">/procrastination_why_you_do_it_what_to_do_about_it_now</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《UNIX 传奇：历史与回忆》读书笔记</title>
+        
+          <description>&lt;h1 id=&quot;unix-传奇历史与回忆读书笔记&quot;&gt;《UNIX 传奇：历史与回忆》读书笔记&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Fri, 18 Mar 2022 16:50:43 +0000</pubDate>
+        <link>
+        /UNIX_A_History_and_a_Memoir</link>
+        <guid isPermaLink="true">/UNIX_A_History_and_a_Memoir</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《图解HTTP》读书笔记（七）</title>
+        
+          <description>&lt;h2 id=&quot;图解-http读书笔记七&quot;&gt;《图解 HTTP》读书笔记（七）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 11 Mar 2022 17:24:42 +0000</pubDate>
+        <link>
+        /tu_jie_HTTP_7</link>
+        <guid isPermaLink="true">/tu_jie_HTTP_7</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《图解HTTP》读书笔记（六）</title>
+        
+          <description>&lt;h2 id=&quot;图解-http读书笔记六&quot;&gt;《图解 HTTP》读书笔记（六）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 04 Mar 2022 18:53:41 +0000</pubDate>
+        <link>
+        /tu_jie_HTTP_6</link>
+        <guid isPermaLink="true">/tu_jie_HTTP_6</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《图解HTTP》读书笔记（五）</title>
+        
+          <description>&lt;h2 id=&quot;图解-http读书笔记五&quot;&gt;《图解 HTTP》读书笔记（五）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 25 Feb 2022 17:56:40 +0000</pubDate>
+        <link>
+        /tu_jie_HTTP_5</link>
+        <guid isPermaLink="true">/tu_jie_HTTP_5</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《图解HTTP》读书笔记（四）</title>
+        
+          <description>&lt;h2 id=&quot;图解-http读书笔记四&quot;&gt;《图解 HTTP》读书笔记（四）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 18 Feb 2022 19:48:39 +0000</pubDate>
+        <link>
+        /tu_jie_HTTP_4</link>
+        <guid isPermaLink="true">/tu_jie_HTTP_4</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《图解HTTP》读书笔记（三）</title>
+        
+          <description>&lt;h2 id=&quot;图解-http读书笔记三&quot;&gt;《图解 HTTP》读书笔记（三）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 11 Feb 2022 16:39:38 +0000</pubDate>
+        <link>
+        /tu_jie_HTTP_3</link>
+        <guid isPermaLink="true">/tu_jie_HTTP_3</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《图解HTTP》读书笔记（二）</title>
+        
+          <description>&lt;h2 id=&quot;图解-http读书笔记二&quot;&gt;《图解 HTTP》读书笔记（二）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Thu, 03 Feb 2022 18:06:37 +0000</pubDate>
+        <link>
+        /tu_jie_HTTP_2</link>
+        <guid isPermaLink="true">/tu_jie_HTTP_2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《图解HTTP》读书笔记（一）</title>
+        
+          <description>&lt;h2 id=&quot;图解-http读书笔记一&quot;&gt;《图解 HTTP》读书笔记（一）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 29 Jan 2022 06:38:36 +0000</pubDate>
+        <link>
+        /tu_jie_HTTP_1</link>
+        <guid isPermaLink="true">/tu_jie_HTTP_1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《程序员修炼之道》读书笔记（一）</title>
+        
+          <description>&lt;h2 id=&quot;程序员修炼之道读书笔记一&quot;&gt;《程序员修炼之道》读书笔记（一）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 22 Jan 2022 15:54:35 +0000</pubDate>
+        <link>
+        /The_Pragmatic_Programmer_From_Journeyman_to_Master</link>
+        <guid isPermaLink="true">/The_Pragmatic_Programmer_From_Journeyman_to_Master</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《 C 陷阱与缺陷》读书笔记</title>
+        
+          <description>&lt;h1 id=&quot;-c-陷阱与缺陷读书笔记&quot;&gt;《 C 陷阱与缺陷》读书笔记&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Fri, 14 Jan 2022 18:32:34 +0000</pubDate>
+        <link>
+        /C_Traps_and_Pitfalls</link>
+        <guid isPermaLink="true">/C_Traps_and_Pitfalls</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《物联网通信技术》读书笔记</title>
+        
+          <description>&lt;h1 id=&quot;物联网通信技术读书笔记&quot;&gt;《物联网通信技术》读书笔记&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sat, 08 Jan 2022 14:07:33 +0000</pubDate>
+        <link>
+        /wu_lian_wang_tong_xin_ji_shu</link>
+        <guid isPermaLink="true">/wu_lian_wang_tong_xin_ji_shu</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《计算机网络》读书笔记（七）</title>
+        
+          <description>&lt;h2 id=&quot;计算机网络-自顶向下方法读书笔记七&quot;&gt;《计算机网络 自顶向下方法》读书笔记（七）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 01 Jan 2022 09:04:32 +0000</pubDate>
+        <link>
+        /Computer_Networking_7</link>
+        <guid isPermaLink="true">/Computer_Networking_7</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《计算机网络》读书笔记（六）</title>
+        
+          <description>&lt;h2 id=&quot;计算机网络-自顶向下方法读书笔记六&quot;&gt;《计算机网络 自顶向下方法》读书笔记（六）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 25 Dec 2021 13:17:31 +0000</pubDate>
+        <link>
+        /Computer_Networking_6</link>
+        <guid isPermaLink="true">/Computer_Networking_6</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《SQL必知必会》读书笔记（一）</title>
+        
+          <description>&lt;h2 id=&quot;-sql-必知必会读书笔记一&quot;&gt;《 SQL 必知必会》读书笔记（一）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 17 Dec 2021 18:38:30 +0000</pubDate>
+        <link>
+        /SQL_bi_zhi_bi_hui_1</link>
+        <guid isPermaLink="true">/SQL_bi_zhi_bi_hui_1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《性能之巅》读书笔记（二）</title>
+        
+          <description>&lt;h2 id=&quot;性能之巅洞悉系统企业与云计算读书笔记二&quot;&gt;《性能之巅：洞悉系统、企业与云计算》读书笔记（二）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 13 Nov 2021 12:25:25 +0000</pubDate>
+        <link>
+        /Systems_Performance-Enterprise_and_the_Cloud_2</link>
+        <guid isPermaLink="true">/Systems_Performance-Enterprise_and_the_Cloud_2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《性能之巅》读书笔记（一）</title>
+        
+          <description>&lt;h2 id=&quot;性能之巅洞悉系统企业与云计算读书笔记一&quot;&gt;《性能之巅：洞悉系统、企业与云计算》读书笔记（一）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 06 Nov 2021 15:50:24 +0000</pubDate>
+        <link>
+        /Systems_Performance-Enterprise_and_the_Cloud_1</link>
+        <guid isPermaLink="true">/Systems_Performance-Enterprise_and_the_Cloud_1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《团队协作的五大障碍》读书笔记</title>
+        
+          <description>&lt;h1 id=&quot;团队协作的五大障碍读书笔记&quot;&gt;《团队协作的五大障碍》读书笔记&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Mon, 25 Oct 2021 07:50:23 +0000</pubDate>
+        <link>
+        /The_Five_Dysfunctions_of_a_Team</link>
+        <guid isPermaLink="true">/The_Five_Dysfunctions_of_a_Team</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《学会提问》读书笔记</title>
+        
+          <description>&lt;h1 id=&quot;学会提问读书笔记&quot;&gt;《学会提问》读书笔记&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sat, 23 Oct 2021 12:47:22 +0000</pubDate>
+        <link>
+        /Asking_the_Right_Questions</link>
+        <guid isPermaLink="true">/Asking_the_Right_Questions</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《高效能人士的七个习惯》读书笔记</title>
+        
+          <description>&lt;h1 id=&quot;高效能人士的七个习惯读书笔记&quot;&gt;《高效能人士的七个习惯》读书笔记&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Tue, 19 Oct 2021 08:27:21 +0000</pubDate>
+        <link>
+        /The_7_Habits_of_Effective_People</link>
+        <guid isPermaLink="true">/The_7_Habits_of_Effective_People</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《金字塔原理》读书笔记</title>
+        
+          <description>&lt;h1 id=&quot;金字塔原理读书笔记&quot;&gt;《金字塔原理》读书笔记&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sat, 16 Oct 2021 08:36:20 +0000</pubDate>
+        <link>
+        /The_Minto_Pyramid_Principle</link>
+        <guid isPermaLink="true">/The_Minto_Pyramid_Principle</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《计算机网络》读书笔记（四）</title>
+        
+          <description>&lt;h2 id=&quot;计算机网络-自顶向下方法读书笔记四&quot;&gt;《计算机网络 自顶向下方法》读书笔记（四）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 09 Oct 2021 08:21:19 +0000</pubDate>
+        <link>
+        /Computer_Networking_4</link>
+        <guid isPermaLink="true">/Computer_Networking_4</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《计算机网络》读书笔记（三）</title>
+        
+          <description>&lt;h2 id=&quot;计算机网络-自顶向下方法读书笔记三&quot;&gt;《计算机网络 自顶向下方法》读书笔记（三）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Tue, 28 Sep 2021 09:39:18 +0000</pubDate>
+        <link>
+        /Computer_Networking_3</link>
+        <guid isPermaLink="true">/Computer_Networking_3</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《计算机网络》读书笔记（二）</title>
+        
+          <description>&lt;h2 id=&quot;计算机网络-自顶向下方法读书笔记二&quot;&gt;《计算机网络 自顶向下方法》读书笔记（二）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 25 Sep 2021 08:52:17 +0000</pubDate>
+        <link>
+        /Computer_Networking_2</link>
+        <guid isPermaLink="true">/Computer_Networking_2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《计算机网络》读书笔记（一）</title>
+        
+          <description>&lt;h2 id=&quot;计算机网络-自顶向下方法读书笔记一&quot;&gt;《计算机网络 自顶向下方法》读书笔记（一）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 18 Sep 2021 15:31:16 +0000</pubDate>
+        <link>
+        /Computer_Networking_1</link>
+        <guid isPermaLink="true">/Computer_Networking_1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（十）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记十&quot;&gt;《Effective C++》读书笔记（十）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 11 Sep 2021 14:34:15 +0000</pubDate>
+        <link>
+        /Effective-C++_10</link>
+        <guid isPermaLink="true">/Effective-C++_10</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>随时随地使用 vscode</title>
+        
+          <description>&lt;h2 id=&quot;随时随地使用-vscode&quot;&gt;随时随地使用 vscode&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 04 Sep 2021 07:52:14 +0000</pubDate>
+        <link>
+        /use_vscode_in_every_browser</link>
+        <guid isPermaLink="true">/use_vscode_in_every_browser</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（九）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记九&quot;&gt;《Effective C++》读书笔记（九）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 28 Aug 2021 10:34:13 +0000</pubDate>
+        <link>
+        /Effective-C++_9</link>
+        <guid isPermaLink="true">/Effective-C++_9</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>正则表达式</title>
+        
+          <description>&lt;h2 id=&quot;正则表达式&quot;&gt;正则表达式&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 21 Aug 2021 15:18:12 +0000</pubDate>
+        <link>
+        /regular_expression</link>
+        <guid isPermaLink="true">/regular_expression</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（八）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记八&quot;&gt;《Effective C++》读书笔记（八）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 14 Aug 2021 14:41:11 +0000</pubDate>
+        <link>
+        /Effective-C++_8</link>
+        <guid isPermaLink="true">/Effective-C++_8</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（七）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记七&quot;&gt;《Effective C++》读书笔记（七）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 07 Aug 2021 15:12:10 +0000</pubDate>
+        <link>
+        /Effective-C++_7</link>
+        <guid isPermaLink="true">/Effective-C++_7</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（六）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记六&quot;&gt;《Effective C++》读书笔记（六）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 31 Jul 2021 14:13:09 +0000</pubDate>
+        <link>
+        /Effective-C++_6</link>
+        <guid isPermaLink="true">/Effective-C++_6</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（五）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记五&quot;&gt;《Effective C++》读书笔记（五）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 24 Jul 2021 15:26:08 +0000</pubDate>
+        <link>
+        /Effective-C++_5</link>
+        <guid isPermaLink="true">/Effective-C++_5</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（四）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记四&quot;&gt;《Effective C++》读书笔记（四）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 17 Jul 2021 14:42:07 +0000</pubDate>
+        <link>
+        /Effective-C++_4</link>
+        <guid isPermaLink="true">/Effective-C++_4</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（三）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记三&quot;&gt;《Effective C++》读书笔记（三）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 10 Jul 2021 12:11:06 +0000</pubDate>
+        <link>
+        /Effective-C++_3</link>
+        <guid isPermaLink="true">/Effective-C++_3</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（二）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记二&quot;&gt;《Effective C++》读书笔记（二）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 03 Jul 2021 11:57:05 +0000</pubDate>
+        <link>
+        /Effective-C++_2</link>
+        <guid isPermaLink="true">/Effective-C++_2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>《Effective C++》读书笔记（一）</title>
+        
+          <description>&lt;h2 id=&quot;effective-c读书笔记一&quot;&gt;《Effective C++》读书笔记（一）&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 26 Jun 2021 10:23:04 +0000</pubDate>
+        <link>
+        /Effective-C++_1</link>
+        <guid isPermaLink="true">/Effective-C++_1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Fully homomorphic encryption 全同态加密</title>
+        
+          <description>&lt;h2 id=&quot;同态加密&quot;&gt;同态加密&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 19 Jun 2021 13:05:02 +0000</pubDate>
+        <link>
+        /homomorphic</link>
+        <guid isPermaLink="true">/homomorphic</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Welcome to bbbiggest</title>
+        
+          <description>&lt;h3 id=&quot;hello&quot;&gt;Hello!&lt;/h3&gt;
+&lt;p&gt;Ready to start!!!&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 03 May 2021 07:11:00 +0000</pubDate>
+        <link>
+        /start</link>
+        <guid isPermaLink="true">/start</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

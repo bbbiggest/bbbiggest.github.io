@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator>
+  <link href="/tag/notes/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2023-04-29T16:50:11+00:00</updated>
+  <id>/tag/notes/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">bbig | </title>
+  
+
+  
+    <subtitle>bbbiggest's blog</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Arm 内存模型</title>
+      <link href="/arm_memory_model" rel="alternate" type="text/html" title="Arm 内存模型" />
+      <published>2022-08-14T23:10:53+00:00</published>
+      <updated>2022-08-14T23:10:53+00:00</updated>
+      <id>/arm_memory_model</id>
+      <content type="html" xml:base="/arm_memory_model">&lt;h1 id=&quot;arm-内存模型&quot;&gt;Arm 内存模型&lt;/h1&gt;
+
+&lt;h2 id=&quot;硬件的内存模型&quot;&gt;硬件的内存模型&lt;/h2&gt;
+
+&lt;h3 id=&quot;sc-sequential-consistency&quot;&gt;SC (Sequential consistency)&lt;/h3&gt;
+
+&lt;p&gt;所有内存操作都按照代码序来执行。所有的操作都有一个全局的顺序，即在每个线程上观察到的顺序都是一致的。&lt;/p&gt;
+
+&lt;h3 id=&quot;tso-total-store-order&quot;&gt;TSO (Total store order)&lt;/h3&gt;
+
+&lt;p&gt;在操作不同地址时，允许 “store load” 乱序。x86 架构使用的就是 TSO 模型。&lt;/p&gt;
+
+&lt;h3 id=&quot;weak-weak-memory-model&quot;&gt;Weak (Weak memory model)&lt;/h3&gt;
+
+&lt;p&gt;有依赖关系的才不会乱序（地址依赖、数据依赖、控制依赖）。Arm 架构使用的是 Weak 模型。Arm 提供了内存 barrier 指令，可以用来保证顺序。&lt;/p&gt;
+
+&lt;h2 id=&quot;arm-barriers&quot;&gt;Arm barriers&lt;/h2&gt;
+
+&lt;p&gt;分为数据访问屏障 (Load-Acquire/Store-Release, DMB, DSB) 和指令同步屏障 (ISB)。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;数据访问屏障 (Data access barriers)
+    &lt;ul&gt;
+      &lt;li&gt;Data Memory Barrier (DMB)&lt;/li&gt;
+      &lt;li&gt;Data Synchronization Barrier (DSB)&lt;/li&gt;
+      &lt;li&gt;Load-Acquire, Store-Release&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;指令同步屏障 (Instruction synchronization barrier)
+    &lt;ul&gt;
+      &lt;li&gt;Instruction Synchronization Barrier(ISB)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中 Load-Acquire / Store-Release，是半屏障，比较轻量级。其他的为双向屏障。&lt;/p&gt;
+
+&lt;p&gt;严格程度为 Load-Acquire / Store-Release &amp;lt; DMB &amp;lt; DSB &amp;lt; ISB 。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">Arm 内存模型</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">如何更优雅的表示红黑树结点</title>
+      <link href="/How_to_define_rbtree_node_more_elegantly" rel="alternate" type="text/html" title="如何更优雅的表示红黑树结点" />
+      <published>2022-07-24T21:08:52+00:00</published>
+      <updated>2022-07-24T21:08:52+00:00</updated>
+      <id>/How_to_define_rbtree_node_more_elegantly</id>
+      <content type="html" xml:base="/How_to_define_rbtree_node_more_elegantly">&lt;h1 id=&quot;如何更优雅的表示红黑树结点&quot;&gt;如何更优雅的表示红黑树结点&lt;/h1&gt;
+
+&lt;p&gt;我们正常红黑树的结点定义是：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct rb_node
+{
+   struct rb_node *rb_parent;
+   int rb_color;
+   struct rb_node *rb_right;
+   struct rb_node *rb_left;
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但在 Linux 内核中，它是这么定义的：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct rb_node {
+unsigned long  __rb_parent_color;
+struct rb_node *rb_right;
+struct rb_node *rb_left;
+} __attribute__((aligned(sizeof(long))));
+   /* The alignment might seem pointless, but allegedly CRIS needs it */
+​
+struct rb_root {
+struct rb_node *rb_node;
+};
+​
+#define rb_parent(r)   ((struct rb_node *)((r)-&amp;gt;__rb_parent_color &amp;amp; ~3))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;它把 parent 和 color 放在一起了，但为什么可以呢，明明 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sizeof(struct rb_node *) == sizeof(unsigned long)&lt;/code&gt; ，并没有多出来的位置。&lt;/p&gt;
+
+&lt;p&gt;看下面的那行宏 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#define rbparent(r) ((struct rbnode *)((r)-&amp;gt;_rbparent_color &amp;amp; ~3))&lt;/code&gt; ，它是把后两位置零之后，当作父结点的指针。那也就是说，它能保证父结点的指针后面两位都是 0 。&lt;/p&gt;
+
+&lt;p&gt;再看结构体后面的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;attribute((aligned(sizeof(long))))&lt;/code&gt; ，它告诉编译器确保 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;struct rb_node&lt;/code&gt; 的大小始终是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sizeof(long)&lt;/code&gt; 的倍数。这一点貌似没什么用， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sizeof(struct rb_node *) == sizeof(long)&lt;/code&gt; ，这三个本来就一样大。&lt;/p&gt;
+
+&lt;p&gt;再看下面的注释 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/ The alignment might seem pointless, but allegedly CRIS needs it /&lt;/code&gt; —— ”对齐可能看起来毫无意义，但据称 CRIS 需要它“。&lt;/p&gt;
+
+&lt;p&gt;提交记录里说到：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[RBTREE] Add explicit alignment to sizeof(long) for struct rb_node.&lt;/p&gt;
+
+  &lt;p&gt;Seems like a strange requirement, but allegedly it was necessary for struct address_space on CRIS, because it otherwise ended up being only byte-aligned. It’s harmless enough, and easier to just do it than to prove it isn’t necessary… although I really ought to dig out my etrax board and test it some time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这个 &lt;a href=&quot;https://en.wikipedia.org/wiki/ETRAX_CRIS&quot;&gt;CRIS&lt;/a&gt; 是 RISC ISA 的一系列 CPU，它可能对地址有某种要求。&lt;/p&gt;
+
+&lt;p&gt;像《深入理解计算机系统》第 3.9.3 节（P189）数据对齐中也有提到：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;许多计算机系统对基本数据类型的合法地址做出了一些限制，要求某种类型的对象的地址必须是某个值 K（通常是 2、4 或 8）的倍数。这种对齐限制简化了形成处理器和内存系统之间接口的硬件设计。例如，假设一个处理器总是从内存中取 8 个字节，则地址必须为 8 的倍数。如果我们能保证将所有的 double 类型数据的地址对齐成 8 的倍数，那么就可以用一个内存操作来读或者写值了。否则，我们可能需要执行两次内存访问，因为对象可能被分放在两个 8 字节内存块中。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;而这个 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aligned(sizeof(long))&lt;/code&gt; 对齐实际上是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kmalloc&lt;/code&gt; 对齐分配的函数。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kmalloc&lt;/code&gt; 在 32 位 CPU 上保证 4 字节对齐，在 64 位 CPU 上保证 8 字节对齐。也就是至少保证了 4 字节对齐。&lt;/p&gt;
+
+&lt;p&gt;所以它分配的地址都会是 4 的倍数，在二进制上后两位都会是 0。于是开发人员就将这两个位用于颜色。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">如何更优雅的表示红黑树结点</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">《程序员修炼之道》读书笔记（三）</title>
+      <link href="/The_Pragmatic_Programmer_From_Journeyman_to_Master_3" rel="alternate" type="text/html" title="《程序员修炼之道》读书笔记（三）" />
+      <published>2022-06-19T23:54:50+00:00</published>
+      <updated>2022-06-19T23:54:50+00:00</updated>
+      <id>/The_Pragmatic_Programmer_From_Journeyman_to_Master_3</id>
+      <content type="html" xml:base="/The_Pragmatic_Programmer_From_Journeyman_to_Master_3">&lt;h2 id=&quot;程序员修炼之道读书笔记三&quot;&gt;《程序员修炼之道》读书笔记（三）&lt;/h2&gt;
+
+&lt;h3 id=&quot;基本工具-the-basic-tools&quot;&gt;基本工具 The Basic Tools&lt;/h3&gt;
+
+&lt;h3 id=&quot;纯文本&quot;&gt;纯文本&lt;/h3&gt;
+
+&lt;p&gt;缺点主要有两个：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;与压缩的二进制格式相比，存储纯文本所需空间更多。&lt;/li&gt;
+  &lt;li&gt;要解释及处理纯文本文件，计算上的代价可能更昂贵。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;优点：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;保证不过时&lt;/p&gt;
+
+    &lt;p&gt;人能够阅读的数据形式，以及自描述的数据，将比所有其他的数据形式和创建它们的应用都活得更长久。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;杠杆作用&lt;/p&gt;
+
+    &lt;p&gt;实际上，计算世界中的每一样工具，从源码管理系统到编译器环境，再到编辑器及独立的过滤器，都能够在纯文本上进行操作。就像 UNIX 哲学：“提供“锋利”的小工具、其中每一样都意在把一件事情做好——Unix因围绕这样的哲学进行设计而著称。”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;更易于测试&lt;/p&gt;
+
+    &lt;p&gt;如果你用纯文本创建用于驱动系统测试的合成数据，那么增加、更新、或是修改测试数据就是一件简单的事情，而且无须为此创建任何特殊工具。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">《程序员修炼之道》读书笔记（三）</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">《程序员修炼之道》读书笔记（二）</title>
+      <link href="/The_Pragmatic_Programmer_From_Journeyman_to_Master_2" rel="alternate" type="text/html" title="《程序员修炼之道》读书笔记（二）" />
+      <published>2022-06-12T18:31:49+00:00</published>
+      <updated>2022-06-12T18:31:49+00:00</updated>
+      <id>/The_Pragmatic_Programmer_From_Journeyman_to_Master_2</id>
+      <content type="html" xml:base="/The_Pragmatic_Programmer_From_Journeyman_to_Master_2">&lt;h2 id=&quot;程序员修炼之道读书笔记二&quot;&gt;《程序员修炼之道》读书笔记（二）&lt;/h2&gt;
+
+&lt;h3 id=&quot;注重实效的途径&quot;&gt;注重实效的途径&lt;/h3&gt;
+
+&lt;h4 id=&quot;系统的正交性&quot;&gt;系统的正交性&lt;/h4&gt;
+
+&lt;p&gt;如果组件是相互隔离的，就能够改变其中之一，而不用担心其余组件。只要不改变组件的外部接口，就可以放心：不会造成波及整个系统的问题。&lt;/p&gt;
+
+&lt;p&gt;可以得到两个主要好处：提高生产率与降低风险。&lt;/p&gt;
+
+&lt;p&gt;提高生产率：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;改动得以局部化，所以开发时间和测试时间得以降低。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;正交的途径还能够促进复用。假如某个组件能做 M 件事情，而另一个组件能做 N 件事情。如果它们是正交的，把它们组合在一起，结果就能做M×N件事情。但是，如果这两个组件是非正交的，它们就会重叠，结果能做的事情就更少。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;正交的途径能降低任何开发中固有的风险。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;有问题的代码区域被隔离开来。如果某个模块有毛病，它不大可能把病症扩散到系统的其余部分。&lt;/li&gt;
+  &lt;li&gt;正交系统很可能能得到更好的测试，因为设计测试、并针对其组件运行测试更容易。&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">《程序员修炼之道》读书笔记（二）</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">《C10K到C10M》</title>
+      <link href="/C10K_to_C10M" rel="alternate" type="text/html" title="《C10K到C10M》" />
+      <published>2022-05-20T21:34:48+00:00</published>
+      <updated>2022-05-20T21:34:48+00:00</updated>
+      <id>/C10K_to_C10M</id>
+      <content type="html" xml:base="/C10K_to_C10M">&lt;h1 id=&quot;c10k-到-c10m&quot;&gt;&lt;strong&gt;C10K 到 C10M&lt;/strong&gt;&lt;/h1&gt;
+
+&lt;p&gt;C10K 问题最早由 Dan Kegel 在 1999 年提出。其中 “C” 是 Client 的缩写，C10K 就是 Web 服务器同时处理 1 万个请求的问题。同理，C100K 就是同时处理 10 万个请求的问题，C10M 是同时处理 1000 万个请求的问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;为什么-c10k-是一个问题&quot;&gt;&lt;strong&gt;为什么 C10K 是一个问题&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;对于现在来说，C10K 当然不是什么问题，但问题中所给出的服务器是：当时花 1200 美元左右购买一台 1000MHz 的机器，它有 2GB 的 RAM 和一个 1000Mbit/sec 的以太网卡。还只是 32 位系统，运行着 Linux 2.2 版本。&lt;/p&gt;
+
+&lt;p&gt;即使有 20000 个客户端，每个客户端占用 100Kbytes 的内存以及 50Kbits/sec 的网络带宽，这个物理资源也足够了，所以瓶颈并不在硬件。&lt;/p&gt;
+
+&lt;p&gt;在当时，Linux 中网络处理都用同步阻塞的方式，也就是每个请求都分配一个进程或者线程。而 10000 个进程或线程的调度、上下文切换、它们占用的内存，都会成为瓶颈。&lt;/p&gt;
+
+&lt;h2 id=&quot;解决方案&quot;&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;既然无法为每个客户端请求分配一个线程，所以假如可以在一个线程内处理多个请求，就可以解决问题。&lt;/p&gt;
+
+&lt;p&gt;也就是基于 I/O 多路复用和请求处理的优化。&lt;/p&gt;
+
+&lt;p&gt;（未完…）&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">C10K 到 C10M</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">《专注力的技术》读书笔记（一）</title>
+      <link href="/zhuanzhulidejishu_1" rel="alternate" type="text/html" title="《专注力的技术》读书笔记（一）" />
+      <published>2022-04-29T21:07:47+00:00</published>
+      <updated>2022-04-29T21:07:47+00:00</updated>
+      <id>/zhuanzhulidejishu_1</id>
+      <content type="html" xml:base="/zhuanzhulidejishu_1">&lt;h2 id=&quot;专注力的技术读书笔记一&quot;&gt;《专注力的技术》读书笔记（一）&lt;/h2&gt;
+
+&lt;p&gt;《专注力的技术》 胖子邓&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;  当越来越有限的精力遇上越来越多的焦虑时，专注就成了一种稀缺资源。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;杜绝无效努力&quot;&gt;杜绝无效努力&lt;/h3&gt;
+
+&lt;p&gt;书中举的例子是，假如你在一个嘈杂的酒吧听歌，哪怕你音量开的很大，也自认为全神贯注，但当你到一个安静的环境重新听这首歌的时候，你会发现有无数在酒吧里没有注意到的细节。&lt;/p&gt;
+
+&lt;p&gt;因为在听音乐这件事上，你最重要的器官——耳朵，接受了太多嘈杂的信号，而你只是空有一颗想要全神贯注的心而已。&lt;/p&gt;
+
+&lt;p&gt;当你不能排除干扰时，你花费的时间、你的努力实际上可能没发挥太大的作用。&lt;/p&gt;
+
+&lt;h3 id=&quot;时间控制法则&quot;&gt;时间控制法则&lt;/h3&gt;
+
+&lt;p&gt;同一时间多重目标，无法集中精力。&lt;/p&gt;
+
+&lt;p&gt;我们没有办法一次性处理太多的任务，当在同一时间内有多重目标的时候，我们通常会耗费大量精力去思考如何安排任务，如何妥善应对各方，如何在各项事务之间自由切换，最终的结果是精力很难集中任务不能顺利完成。&lt;/p&gt;
+
+&lt;p&gt;这种状态我们称之为“目标摩擦”：当我们面对多项目标的时候，我们在安排任务或者切换任务的过程中，会消耗掉大量的注意力。&lt;/p&gt;
+
+&lt;p&gt;要解决目标摩擦问题，不是简单地列出清单就能够办到的，关键是能不能按清单来执行计划，而这就依赖于你对时间的掌控程度。可以用柳比歇夫的时间记录法…&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">《专注力的技术》读书笔记（一）</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">《卡片笔记写作法：如何实现从阅读到写作》读书笔记（一）</title>
+      <link href="/How_to_Take_Smart_Notes_1" rel="alternate" type="text/html" title="《卡片笔记写作法：如何实现从阅读到写作》读书笔记（一）" />
+      <published>2022-04-22T23:12:46+00:00</published>
+      <updated>2022-04-22T23:12:46+00:00</updated>
+      <id>/How_to_Take_Smart_Notes_1</id>
+      <content type="html" xml:base="/How_to_Take_Smart_Notes_1">&lt;h1 id=&quot;卡片笔记写作法如何实现从阅读到写作读书笔记一&quot;&gt;《卡片笔记写作法：如何实现从阅读到写作》读书笔记（一）&lt;/h1&gt;
+
+&lt;p&gt;《How to Take Smart Notes》 [德] 申克·阿伦斯&lt;/p&gt;
+
+&lt;h3 id=&quot;是什么&quot;&gt;是什么？&lt;/h3&gt;
+&lt;p&gt;卢曼的卡片笔记写作法，其实就是两个卡片盒加三种笔记组成的。&lt;/p&gt;
+
+&lt;p&gt;卡片盒：分别是文献卡片盒和主卡片盒。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;文献卡片盒，里面有文献和对文献内容的简要说明，也就是对我们摘要的内容进行简单的说明和溯源。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;主卡片盒，主要是他针对所阅读的内容收集和产生的想法。这些笔记都写在索引卡片上，存放在木质卡片盒里。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;三种笔记：闪念笔记，文献笔记，永久笔记。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;闪念笔记。就是你随时想到的想法，我们可以随时在手边记录下来。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;文献笔记。无论你读什么，都要做笔记，写下你不想忘记的内容，或者你认为可能会在自己的思考或写作中使用的内容。这样的笔记非常简短，需要用自己的语言记录，而不是完全摘抄原文。
+在记文献笔记的时候，要把笔记和参考书的细节都放在一起记录。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;永久笔记。永久笔记就是把闪念笔记和我们每天思考的主题结合起来，然后如果有关系的话，就放在我们的主卡片盒中。
+这样的过程就相当于我们在备忘录记录了一天的感想，然后等晚上把今天记录的内容，整合一下写在笔记本上，再去思考我们记下的这些内容是不是和以前记录的内容有关联性，找到先关的内容，我们再去延伸思考。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;最关键的不是笔记的形式，而是我们每天的思考。&lt;/p&gt;
+
+&lt;h3 id=&quot;搭建卡片盒笔记系统的三个要点&quot;&gt;搭建卡片盒笔记系统的三个要点&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;拥有积极成长的心态；&lt;/li&gt;
+  &lt;li&gt;了解卡片盒原理和搭建卡片盒系统；&lt;/li&gt;
+  &lt;li&gt;改变所涉及到的工作流程。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;要像时间管理系统一样管理笔记系统，只有当大脑信任系统，而且清晰知道一切都可以处理好的时候，大脑才能专注于手头的任务；不然就会胡思乱想，无法安定下来。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">《卡片笔记写作法：如何实现从阅读到写作》读书笔记（一）</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">《拖延心理学》读书笔记（二）</title>
+      <link href="/procrastination_why_you_do_it_what_to_do_about_it_now_2" rel="alternate" type="text/html" title="《拖延心理学》读书笔记（二）" />
+      <published>2022-04-08T17:23:46+00:00</published>
+      <updated>2022-04-08T17:23:46+00:00</updated>
+      <id>/procrastination_why_you_do_it_what_to_do_about_it_now_2</id>
+      <content type="html" xml:base="/procrastination_why_you_do_it_what_to_do_about_it_now_2">&lt;h1 id=&quot;拖延心理学读书笔记二&quot;&gt;《拖延心理学》读书笔记（二）&lt;/h1&gt;
+
+&lt;p&gt;加拿大卡尔加里大学（University of Calgary）的心理学家皮尔斯·斯蒂尔（Piers Steel），提出有4个因素最有可能强化拖延的倾向：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对自己取得成功的能力缺乏自信；&lt;/li&gt;
+  &lt;li&gt;对要处理某项任务有反感心理；&lt;/li&gt;
+  &lt;li&gt;回报和目标太遥远；&lt;/li&gt;
+  &lt;li&gt;难以自我约束，包括容易冲动或分心。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;采取行动的建议&quot;&gt;采取行动的建议&lt;/h3&gt;
+
+&lt;h4 id=&quot;确立可操作的目标&quot;&gt;确立可操作的目标&lt;/h4&gt;
+
+&lt;p&gt;要确立一个可操作的目标（可观察、具体且实在的），而不是那种模糊而抽象的目标。&lt;/p&gt;
+
+&lt;p&gt;一个具有可操作性的目标具有以下特征：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;可观察性；&lt;/li&gt;
+  &lt;li&gt;具体性和特殊性；&lt;/li&gt;
+  &lt;li&gt;可以被分解成几个小的步骤；&lt;/li&gt;
+  &lt;li&gt;第一步可以在 5 分钟内完成。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不是：“我要停止拖延。”
+而是：“我要在 9 月 1 日之前打扫和整理完宿舍。” 或者 “我会每天花 1 个小时学习数学。”&lt;/p&gt;
+
+&lt;p&gt;不要异想天开，而要从小事做起。也不要过于理想化，而要选择一个能接受的程度最低的目标。&lt;/p&gt;
+
+&lt;p&gt;这样可以减轻你开始做事的门槛。&lt;/p&gt;
+
+&lt;h4 id=&quot;分解目标&quot;&gt;分解目标&lt;/h4&gt;
+
+&lt;p&gt;将目标分解成具体的迷你目标。&lt;/p&gt;
+
+&lt;p&gt;每一个迷你目标都要比大目标更容易达成，小目标可以累积成大目标。&lt;/p&gt;
+
+&lt;h4 id=&quot;坚守时间期限&quot;&gt;坚守时间期限&lt;/h4&gt;
+
+&lt;p&gt;一种有助于顺利启动的办法就是设定一个工作上的时间期限，并保证不要改变它。&lt;/p&gt;
+
+&lt;p&gt;不要超过那个时间期限。如果你决定花30分钟在某件事情上，而你又真的花了那么长时间做这件事，那么无论你做成了什么，也无论你觉得这段时间的成果如何，你都已经成功了。它会帮你建立起对自己的信心，而拖延者能够重拾自信是难能可贵的。&lt;/p&gt;
+
+&lt;p&gt;在一开始，当时间期限到了，你绝对有必要停下来。这时你会想：“我做得很好，我应该充分利用这股冲劲儿，继续做下去。”这是一个很有诱惑力的想法，但是如果你第一次就不知不觉做了2个小时，在超出的时间内也做得很好，那下次你就会觉得自己可以再工作2个小时。这是一个陷阱，最终会将你引入失望和逃避。&lt;/p&gt;
+
+&lt;h4 id=&quot;现实地对待时间&quot;&gt;现实地对待时间&lt;/h4&gt;
+
+&lt;p&gt;问自己：这件事情实际上会花掉我多少时间，我又能真正地抽出多少时间投入其中？&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不是：“我明天有充足的时间去做这件事。”&lt;/li&gt;
+  &lt;li&gt;而是：“我应该看一下日程表，看看什么时候可以开始做。上次那件事所花的时间超出了我的预期。”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;你可以使用每周非计划日程表来记录自己的进步。工作半个小时，就在日程表上涂掉相应的半格。工作1个小时，就涂掉整个格子。&lt;/p&gt;
+
+&lt;p&gt;以这种简单的方式跟踪目标的进度有几个好处：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;当你记录下自己的进步，你就会把注意力放在已经完成的事情上，而不会老是对自己发誓什么时候开始工作或者发誓要在这上面花多少时间。如果不能兑现你的誓言，那你只会感到挫败，可当你将你实际做的事情记录下来时，它更有可能给你一种成功的经验。以这种方式监测自己的进步，使你能够看到事情积极的一面，你会看到“杯子是半满的”，而不是“杯子是半空的”。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;那些被涂掉的空格可以看成对你的有效行为的一种奖赏。在做完事之后，你记录得越及时，奖赏的效果就越显著，而减轻拖延的一个重要因素就是快速地给予奖赏。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这还能让拖延者的时间观念变得更现实。如果你一个星期只花了1个小时在完成目标上，那你就无法欺骗自己，认为自己已经做了很多事。而如果花了4个小时在这上面，那你也无法假装自己一事无成。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;还要注意的一点是&lt;/strong&gt;，大脑也会影响人们精确判断时间的能力。当缺乏多巴胺时，大脑中监测时间间隔的时钟就会失灵。也就是在一天枯燥乏味的工作后，人很容易沉浸在娱乐中无法自拔……&lt;/p&gt;
+
+&lt;h4 id=&quot;只管开始做&quot;&gt;只管开始做！&lt;/h4&gt;
+
+&lt;p&gt;不要想一下子做完整件事情，每次只要迈出一小步就可以。千里之行，始于足下。&lt;/p&gt;
+
+&lt;p&gt;想想自己可以采取的第一个行动是什么？&lt;/p&gt;
+
+&lt;p&gt;不要等到自己有意愿和感觉的时候才开始。如果你想等到有意愿和感觉的时候才开始做事，那么你可能永远都不会开始。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;世界上有些事天生就是让人不快的或者单调乏味的，如交税。我们不知道有哪个人是盼望着去交税的，如果你在等待做事的意愿，那么你或许会永远等下去。&lt;/p&gt;
+
+  &lt;p&gt;事实上，即便不在理想的状态或者心情不对，你也可以开始做事。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;利用零碎时间&quot;&gt;利用零碎时间&lt;/h4&gt;
+
+&lt;p&gt;如果你的拖延是出于意志上的挣扎，那么，利用零碎时间做事就是一个特别管用的办法。&lt;/p&gt;
+
+&lt;p&gt;不管借口是什么，也无论多么疲劳、多么没有热情或者多么忙，你都可以花 15 分钟做一点事。&lt;/p&gt;
+
+&lt;p&gt;任何事情你都可以忍受 15 分钟。只有过一次又一次的 15 分钟才能完成一件事情。因此，你在 15 分钟时间内所做的事情是相当有意义的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不是：“我只有15分钟时间了，何必费力去做呢？”&lt;/li&gt;
+  &lt;li&gt;而是：“在接下来的15分钟内，这件事的哪个部分我可以上手去做呢？”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;为困难和挫折做好心理准备&quot;&gt;为困难和挫折做好心理准备&lt;/h4&gt;
+
+&lt;p&gt;很多拖延者在一开始既积极又乐观，但到了某一个点之后，他们就被卡住了，然后再也没继续。&lt;/p&gt;
+
+&lt;p&gt;当你遭遇到第一个或者第二个、第三个困难时，不要放弃。困难只不过是一个需要你解决的问题，它不是你个人价值或能力的反映。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不是：“教授不在办公室，所以我没办法写论文了。我想去看场电影。”&lt;/li&gt;
+  &lt;li&gt;而是：“虽然教授不在，但是我可以在他回来之前先列出论文提纲。”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;对拖延者来说，危险不在于暂时从难题中撤离，而在于完全地放弃。&lt;/p&gt;
+
+&lt;p&gt;也不要习惯性地利用借口来拖延，而要将它看作再做 15 分钟的信号，或者将借口当作完成一个步骤之后的奖励。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不是：“我累了（抑郁／饿了／很忙／很烦，等等），以后再做。”&lt;/li&gt;
+  &lt;li&gt;而是：“我累了，所以我再写15分钟报告，接下来我会小睡片刻。”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;要事第一&quot;&gt;要事第一&lt;/h4&gt;
+
+&lt;p&gt;没有人可以什么事情都做。&lt;/p&gt;
+
+&lt;p&gt;保护你的时间，不要去做额外的或者不必要的事情。可能的话，可以将任务分派出去（甚至扔掉不管）。&lt;/p&gt;
+
+&lt;p&gt;随时问问自己：你真的是能够做这件事的唯一人选吗？这件事情真的有必要去做吗？&lt;/p&gt;
+
+&lt;p&gt;过于忙碌本身是否就是拖延呢？如果利用忙碌来逃避更为重要的事情，那么你可能就是在拖延。&lt;/p&gt;
+
+&lt;p&gt;当你要做很多事情的时候，你不仅培植了一片使拖延得以滋生的土壤，还为自己准备好了拖延的借口：“我并没有在拖延，我只是太忙了，无法及时完成每一件事。”&lt;/p&gt;
+
+&lt;h4 id=&quot;留意拖延的借口&quot;&gt;留意拖延的借口&lt;/h4&gt;
+
+&lt;p&gt;回想你的选择关口。&lt;/p&gt;
+
+&lt;p&gt;过去你可能不自觉地选择了拖延，甚至都没有意识到自己的选择。或许你毫不怀疑地接受了许多借口，或者凭着冲动抛下了自己的目标。&lt;/p&gt;
+
+&lt;p&gt;即便在一星期中一无所获，至少也要意识到自己的拖延是怎样发生的。&lt;/p&gt;
+
+&lt;p&gt;停下来问一下自己：“拖延传递给我的是什么信息？”&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不是：“我又在拖延，我恨我自己。”&lt;/li&gt;
+  &lt;li&gt;而是：“我又在拖延，我的感受是怎样的？它意味着什么？我可以从中学到什么？”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;要记住，你能够做出自己的选择。你可以拖延，你也可以行动。&lt;/p&gt;
+
+&lt;p&gt;即便在心里不舒服的时候，你也可以行动。&lt;/p&gt;
+
+&lt;p&gt;以往的历史无法决定你当下要怎样做。你可以从学习、成长和挑战自己中获得快乐。&lt;/p&gt;
+
+&lt;h4 id=&quot;培养良好的身体状态&quot;&gt;培养良好的身体状态&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;通过运动走出拖延的麻痹状态
+    &lt;ol&gt;
+      &lt;li&gt;有证据显示，除了提升情绪，运动还有助于大脑的发展，提高大脑的调节能力。&lt;/li&gt;
+      &lt;li&gt;一项调查研究显示，运动之后人们学习新单词的能力比以前增强了20%。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;利用正念恢复平静的心理状态
+    &lt;ol&gt;
+      &lt;li&gt;哈佛大学的一项研究表明，经常进行正念修行可以促进大脑皮层前脑岛的活动，该脑区和爱、友善、开放以及易接受性有关。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;享受你的自由时间&quot;&gt;享受你的“自由”时间&lt;/h4&gt;
+
+&lt;p&gt;拖延者无法有效率地工作这一点是很明显的，但是经常会忽视另一点是，他们在放松和娱乐上也存在问题。&lt;/p&gt;
+
+&lt;p&gt;即便在该工作的时候沉迷于娱乐活动，很多时候你也无法尽情享受，因为你知道自己是在利用娱乐逃避某些事情。有时候，你甚至都不允许自己有这样的心情转移，因为你觉得自己效率很低，所以不配去参加娱乐活动。无论是哪种情况，你都无法让自己真正开心起来。&lt;/p&gt;
+
+&lt;p&gt;不管你觉得自己多么堕落，每个人都需要给自己留出一点玩耍的时间。如果剥夺了自己放松的权利，你就会像用完了油的汽车一样无精打采。而且，你会通过拖延的方式来窃取休闲的时间。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">《拖延心理学》读书笔记（二）</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">《拖延心理学》读书笔记（一）</title>
+      <link href="/procrastination_why_you_do_it_what_to_do_about_it_now" rel="alternate" type="text/html" title="《拖延心理学》读书笔记（一）" />
+      <published>2022-04-01T18:36:45+00:00</published>
+      <updated>2022-04-01T18:36:45+00:00</updated>
+      <id>/procrastination_why_you_do_it_what_to_do_about_it_now</id>
+      <content type="html" xml:base="/procrastination_why_you_do_it_what_to_do_about_it_now">&lt;h1 id=&quot;拖延心理学读书笔记一&quot;&gt;《拖延心理学》读书笔记（一）&lt;/h1&gt;
+
+&lt;p&gt;Procrastination: Why You Do It, What to Do About It Now&lt;/p&gt;
+
+&lt;p&gt;by Jane B. Burka, Lenora M. Yuen [ 美 ]&lt;/p&gt;
+
+&lt;p&gt;这本书前半部分讲的是一些拖延症在心理上的原因，后半部分讲的是一些采取行动的建议。&lt;/p&gt;
+
+&lt;p&gt;前半部分显得普普通通，感觉有些片面了，后半部分却有种眼前一亮的感觉。&lt;/p&gt;
+
+&lt;p&gt;虽然比较想分享后半部分，但还差几十页没看，所以先分享先半部分，后面的等下周。&lt;/p&gt;
+
+&lt;h2 id=&quot;拖延症的根源&quot;&gt;拖延症的根源&lt;/h2&gt;
+
+&lt;p&gt;在书中占据篇幅最多的是“恐惧”。对失败的恐惧，对成功的恐惧，对疏远的恐惧，对亲近的恐惧等等。&lt;/p&gt;
+
+&lt;p&gt;书的作者认为，人们之所以会产生拖延的不良习性，是因为害怕。他们害怕如果行动了，会让自己陷入麻烦。他们担心如果展示了自己真实的一面，会有危险的结果等着自己。&lt;/p&gt;
+
+&lt;p&gt;担心被他人评判或者被自己评判，害怕自己的不足被发现，害怕付出了最大的努力却还是做得不够好，害怕达不到要求，也即恐惧失败。&lt;/p&gt;
+
+&lt;p&gt;而恐惧成功则例如，有些人担心成功需要付出太多，远远超出他们所能承受的范围。因为致力于追求成功需要付出很多时间、努力，还要非常专注，所以有些人认为自己达不到那样的要求，还是站在原地比较安全。害怕成功的人担心人们会提高对自己的期待。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;有一位拖延者生动地讲述了这种心态：“这就像一个可以跳得很高的跳高运动员。他训练了几个月，在身体和精神上做好调整，一遍又一遍地尝试跳过横杆并打破纪录。最后，当他终于跳得比以前高了时，别人会怎么做？他们会把横杆升高。”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;恐惧亲近疏远，则是担心行动后会不得不与一些人变得亲近或者疏远。&lt;/p&gt;
+
+&lt;p&gt;拖延可能是一种应对恐惧的的自我保护心理策略。从某种意义上讲，拖延也给你带来了好处。它保护你，不让你意识到自己不令人愉快的一面，还帮你躲避内心的烦恼和恐惧。在你不想采取会让自己内心不安的行动时，它给了你一个方便的理由让你心安理得地不去行动。&lt;/p&gt;
+
+&lt;p&gt;拖延可能也源于对生活的一些顽固信念。&lt;/p&gt;
+
+&lt;p&gt;如果你认为必须做到完美，那么你就会宁愿拖延着也不愿意去努力做事，不愿意冒风险被人评判为失败。如果你相信成功是危险的，那么你就会通过拖延来保护自己和他人，降低把事情做成的概率。如果你将合作等同于屈服，那么你就会一直拖着，直到觉得已经准备好了才去做，以此来维护自己的掌控感。如果你认为人们不会喜欢真实的你，那么你就会利用拖延来保留自己的想法并与他人保持一个安全距离。&lt;/p&gt;
+
+&lt;p&gt;这些恐惧或者执念都可能源自于以往不快的人生经验，包括原生家庭、成长环境等。&lt;/p&gt;
+
+&lt;p&gt;不过…我觉得可能更多的拖延症仅仅是意志上的挣扎，就像早上赖床一样，没能用意志去对抗偷懒，毕竟代价看起来不是当场付出的。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">《拖延心理学》读书笔记（一）</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">《UNIX 传奇：历史与回忆》读书笔记</title>
+      <link href="/UNIX_A_History_and_a_Memoir" rel="alternate" type="text/html" title="《UNIX 传奇：历史与回忆》读书笔记" />
+      <published>2022-03-18T16:50:43+00:00</published>
+      <updated>2022-03-18T16:50:43+00:00</updated>
+      <id>/UNIX_A_History_and_a_Memoir</id>
+      <content type="html" xml:base="/UNIX_A_History_and_a_Memoir">&lt;h1 id=&quot;unix-传奇历史与回忆读书笔记&quot;&gt;《UNIX 传奇：历史与回忆》读书笔记&lt;/h1&gt;
+
+&lt;p&gt;《UNIX 传奇：历史与回忆》布莱恩 · W. 克尼汉&lt;/p&gt;
+
+&lt;h2 id=&quot;unix-出现背景&quot;&gt;UNIX 出现背景&lt;/h2&gt;
+
+&lt;p&gt;1964 年麻省理工推出了 CTSS （兼容&lt;strong&gt;分时&lt;/strong&gt;系统），与当时主流的“&lt;strong&gt;批处理&lt;/strong&gt;”系统相比，操作系统在用户之间快速轮转，使每个用户都感受不到其他用户的存在，体验极佳。&lt;/p&gt;
+
+&lt;p&gt;于是麻省理工、GE、贝尔实验室三者决定做一个更好的版本，也就是 Multics 系统，意为多路复用信息和计算服务 (Multiplexed Information and Computing Service) 。&lt;/p&gt;
+
+&lt;p&gt;但由于它被“&lt;strong&gt;过度设计&lt;/strong&gt;”，最终系统过于&lt;strong&gt;复杂&lt;/strong&gt;，无法实现以合理的代价为贝尔实验室提供计算服务的目标，并且太贵了，最后贝尔实验室退出了 Multics 项目。所以后来的 &lt;strong&gt;UNIX&lt;/strong&gt; 也吸取了 Multics 的&lt;strong&gt;教训&lt;/strong&gt;，&lt;strong&gt;UNICS&lt;/strong&gt; 代表“&lt;strong&gt;毫不复杂的信息与计算服务&lt;/strong&gt;” (UNiplexed Information and Computing Service) ，但后来由于某些原因，UNICS 改为了 UNIX。&lt;/p&gt;
+
+&lt;h3 id=&quot;第二系统效应-second-system-effect&quot;&gt;第二系统效应 (second system effect)&lt;/h3&gt;
+
+&lt;p&gt;在首个系统（如 CTSS）创建成功后，打算创建一个新系统，修正旧系统的遗留问题，还要添加每个人期望的新特性，结果常常是塞了太多不同东西进去，最终得到过于复杂的系统。&lt;/p&gt;
+
+&lt;p&gt;Multics 就算是“第二系统效应”的受害者，&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>bbbiggest</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="notes" />
+      
+
+      
+        <summary type="html">《UNIX 传奇：历史与回忆》读书笔记</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
